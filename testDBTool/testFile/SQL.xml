@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<page>
+    <!--test-sql-->
+    <database name="book">
+        <table name="book">
+            <sql id="select_book_id">SELECT * FROM book WHERE book_id = %s</sql>
+        </table>
+    </database>
+
+
+    <database name="bi_export">
+        <table name="crm_shop_daily">
+            <sql id="select_shop_daily">SELECT * FROM crm_shop_daily WHERE shop_no= %s</sql>
+            <sql id="select_shop_daily_all">SELECT * FROM crm_shop_daily</sql>
+        </table>
+
+    </database>
+
+</page>
