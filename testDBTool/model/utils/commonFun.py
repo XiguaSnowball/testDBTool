@@ -1,11 +1,11 @@
 from xml.etree import ElementTree as ElementTree
-import readConfig as readConfig
-from utils.Log import MyLog as Log
+from testDBTool.model.utils import readConfig as readconfig
+from testDBTool.model.utils.Log import MyLog as mylog
 import os
 
-localReadConfig = readConfig.ReadConfig()
-proDir = readConfig.proDir
-log = Log.get_log()
+localReadConfig = readconfig.ReadConfig()
+proDir = readconfig.proDir
+log = mylog.get_log()
 logger = log.get_logger()
 
 caseNo = 0
@@ -29,7 +29,7 @@ def get_sql(database_name, table_name, sql_id):
 
 def set_xml():
     """
-    set sql xml
+    set sql xmlc
     :return:
     """
     if len(database) == 0:

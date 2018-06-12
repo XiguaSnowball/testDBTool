@@ -1,0 +1,15 @@
+2018-06-12 19:10:13,372 - werkzeug - WARNING -  * Debugger is active!
+2018-06-12 19:10:13,387 - werkzeug - INFO -  * Debugger PIN: 886-986-485
+2018-06-12 19:10:14,938 - root - INFO - --------Connect DB successfully!
+2018-06-12 19:10:14,938 - root - INFO - --------执行sql
+2018-06-12 19:10:15,205 - root - INFO - --------Connect DB successfully!
+2018-06-12 19:10:15,205 - root - INFO - --------执行sql
+2018-06-12 19:10:15,239 - root - INFO - --------获取返回值
+2018-06-12 19:10:15,250 - root - INFO - --------查询成功
+2018-06-12 19:10:15,262 - werkzeug - INFO - 127.0.0.1 - - [12/Jun/2018 19:10:15] "GET /beta1/bi_export/select1 HTTP/1.1" 500 -
+2018-06-12 19:10:15,284 - werkzeug - INFO - 127.0.0.1 - - [12/Jun/2018 19:10:15] "GET /beta1/bi_export/select1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2018-06-12 19:10:15,287 - werkzeug - INFO - 127.0.0.1 - - [12/Jun/2018 19:10:15] "GET /beta1/bi_export/select1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2018-06-12 19:10:15,290 - werkzeug - INFO - 127.0.0.1 - - [12/Jun/2018 19:10:15] "GET /beta1/bi_export/select1?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2018-06-12 19:10:15,325 - werkzeug - INFO - 127.0.0.1 - - [12/Jun/2018 19:10:15] "GET /beta1/bi_export/select1?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2018-06-12 19:10:15,344 - werkzeug - INFO - 127.0.0.1 - - [12/Jun/2018 19:10:15] "GET /beta1/bi_export/select1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2018-06-12 19:10:22,598 - werkzeug - INFO -  * Detected change in '/Users/xingyukun/PycharmProjects/testDBTool/testDBTool/controller/testController.py', reloading

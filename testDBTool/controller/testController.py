@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 from flask import Flask, jsonify
 from flask import abort
 from flask import make_response
@@ -8,6 +9,7 @@ from flask import url_for
 from flask_httpauth import HTTPBasicAuth
 
 from testDBTool import app
+from testDBTool.model.utils.task import selectDataByParams
 
 auth = HTTPBasicAuth()
 
@@ -16,6 +18,18 @@ auth = HTTPBasicAuth()
 @app.route('/')
 def index():
     return app.send_static_file('index.html')
+
+
+@app.route('/test/login')
+def test_login():
+    return app.send_static_file('login.html')
+
+
+@app.route('/beta1/bi_export/select1', methods=['GET'])
+def selectDataByParamsController1():
+    shop_no = 'BLDSD00001'
+    data_return = selectDataByParams.selectDataByParams(shop_no)
+    return data_return
 
 
 @auth.get_password
@@ -54,7 +68,6 @@ tasks = [
         'done': False
     }
 ]
-
 
 @app.route('/test/api/tasks', methods=['GET'])
 # @auth.login_required

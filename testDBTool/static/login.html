@@ -140,4 +140,19 @@
 </section>
 </body>
 
+<script>
+    const btn = document.querySelector('#login');
+    btn.addEventListener('click', () = > {
+        fetch('/test/api/tasks';
+    )
+    .then(success = > {
+        console.log(success);
+    }).catch(err = > {
+        console.debug(err);
+    })
+    })
+
+</script>
+
+
 </html>

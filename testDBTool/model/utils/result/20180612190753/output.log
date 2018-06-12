@@ -1,0 +1,3 @@
+2018-06-12 19:07:53,935 - werkzeug - WARNING -  * Debugger is active!
+2018-06-12 19:07:53,948 - werkzeug - INFO -  * Debugger PIN: 886-986-485
+2018-06-12 19:08:49,140 - werkzeug - INFO -  * Detected change in '/Users/xingyukun/PycharmProjects/testDBTool/testDBTool/controller/testController.py', reloading

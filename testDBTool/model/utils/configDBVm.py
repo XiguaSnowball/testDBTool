@@ -1,8 +1,8 @@
 import pymysql
-import readConfig as readConfig
-from utils.Log import MyLog as Log
+from testDBTool.model.utils import readConfig as readconfig
+from testDBTool.model.utils import Log as log
 
-localReadConfig = readConfig.ReadConfig()
+localReadConfig = readconfig.ReadConfig()
 
 
 class MyVmDB:

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+<button class='btnHandle'>fetch(GET)</button>
+</body>
+<script>
+    const btn = document.querySelector('.btnHandle');
+    btn.addEventListener('click', () = > {
+        fetch('http://localhost:63343/test/api/tasks'
+    ).then(success = > {
+        console.log('---------');
+    console.log(success);
+    console.log('---------');
+    }).catch(err = > {
+        console.debug(err);
+    })
+    })
+</script>
+
+</html>

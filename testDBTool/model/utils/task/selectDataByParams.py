@@ -1,15 +1,16 @@
 # coding=utf-8
-from utils import configDBLocal as localDB
-from utils import configDBBeta1 as Beta1DB
-from utils import commonFun
-from utils.commonFun import log
+from testDBTool.model.utils import configDBLocal as localDB
+from testDBTool.model.utils import configDBBeta1 as Beta1DB
+from testDBTool.model.utils import commonFun
+from testDBTool.model.utils.commonFun import log
 
 configDBLocal = localDB.MyLocalDB()
 configDBBeta1 = Beta1DB.MyBeta1DB()
 
 
-def selectDataByParams():
-    shop_no = 'BLDSD00001'
+def selectDataByParams(shopNo):
+    # shop_no = 'BLDSD00001'
+    shop_no = shopNo
     sql1 = commonFun.get_sql('bi_export', 'crm_shop_daily', 'select_shop_daily_all')
     sql2 = commonFun.get_sql('bi_export', 'crm_shop_daily', 'select_shop_daily')
     try:

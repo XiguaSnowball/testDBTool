@@ -1,8 +1,8 @@
 import pymysql
-import readConfig as readConfig
-from utils.Log import MyLog as Log
+from testDBTool.model.utils import readConfig as readconfig
+from testDBTool.model.utils.Log import MyLog as mylog
 
-localReadConfig = readConfig.ReadConfig()
+localReadConfig = readconfig.ReadConfig()
 
 
 class MyBeta1DB:
@@ -23,7 +23,7 @@ class MyBeta1DB:
     }
 
     def __init__(self):
-        self.log = Log.get_log()
+        self.log = mylog.get_log()
         self.logger = self.log.get_logger()
         self.db = None
         self.cursor = None

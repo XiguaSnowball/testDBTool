@@ -120,46 +120,44 @@
                         </fieldset>
 
 
-                        <div class="row clearfix">
-                            <div class="lbl">
-                                <label for="host">
-                                    Host</label>
-                            </div>
-                            <div class="ctrl">
-                                <input type="text" id="host" name="host" data-required="true" data-validation="text"
-                                       data-msg="Invalid Host" placeholder="127.0.0.1"></div>
-
                             <div class="row clearfix">
                                 <div class="lbl">
-                                    <label for="username">
+                                    <label for="host">
+                                        测试环境Host</label>
+                                </div>
+                                <div class="ctrl">
+                                    <input type="text" id="host" name="host" data-required="true" data-validation="text"
+                                           data-msg="Invalid Host" placeholder="127.0.0.1"></div>
+                                <!--
+                                <div class="row clearfix">
+                                    <div class="lbl">
+                                        <label for="username">
                                         Username</label>
+                                    </div>
+                                    <div class="ctrl">
+                                        <input type="text" id="username" name="username" data-required="true" data-validation="username" data-msg="Invalid username" placeholder="root">
+                                    </div>
                                 </div>
-                                <div class="ctrl">
-                                    <input type="text" id="username" name="username" data-required="true"
-                                           data-validation="username" data-msg="Invalid username" placeholder="root">
-                                </div>
-                            </div>
 
-                            <div class="row clearfix">
-                                <div class="lbl">
-                                    <label for="password">
+                                <div class="row clearfix">
+                                    <div class="lbl">
+                                        <label for="password">
                                         Password</label>
+                                    </div>
+                                    <div class="ctrl">
+                                        <input type="text" id="password" name="password" data-required="true" data-validation="custom" data-msg="Invalid password #" placeholder="123456">
+                                    </div>
+                                </div> -->
+                                <div class="row clearfix">
+                                    <div class="lbl">
+                                        <label for="database">
+                                            Database_db</label>
+                                    </div>
+                                    <div class="ctrl">
+                                        <input type="text" name="database" id="database" placeholder="grampus_crm">
+                                    </div>
                                 </div>
-                                <div class="ctrl">
-                                    <input type="text" id="password" name="password" data-required="true"
-                                           data-validation="custom" data-msg="Invalid password #" placeholder="123456">
-                                </div>
-                            </div>
-                            <div class="row clearfix">
-                                <div class="lbl">
-                                    <label for="database">
-                                        Database</label>
-                                </div>
-                                <div class="ctrl">
-                                    <input type="text" name="database" id="database" placeholder="grampus_crm">
-                                </div>
-                            </div>
-
+                                <!-- 
                             <div class="row clearfix">
                                 <div class="lbl">
                                     <label for="port">
@@ -168,10 +166,10 @@
                                 <div class="ctrl">
                                     <input type="text" name="port" id="port" placeholder="3306" value="3306">
                                 </div>
+                            </div> -->
+
+
                             </div>
-
-
-                        </div>
                 </fieldset>
 
 
@@ -188,7 +186,7 @@
                         <div class="ctrl">
                             <textarea id="sql" name="sql" rows="6" cols="10"></textarea>
                         </div>
-                    </div>
+                        </div>
 
 
                     <div class="row clearfix">
@@ -199,8 +197,8 @@
                         <div class="ctrl">
                             <textarea id="comments" name="comments" rows="6" cols="10"></textarea>
                         </div>
-                    </div>
-            </div>
+                        </div>
+                        </div>
             </fieldset>
 
             <div class="row  clearfix">
@@ -208,7 +206,7 @@
                     <input type="submit" name="submit" id="submit" class="submit" value="执行输入SQL">
                 </div>
             </div>
-    </div>
+                </div>
 
     </form>
 

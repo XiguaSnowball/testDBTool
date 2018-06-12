@@ -1,16 +1,16 @@
 import os
-import readConfig as readConfig
+from testDBTool.model.utils import readConfig as readconfig
 import logging
 from datetime import datetime
 import threading
 
-localReadConfig = readConfig.ReadConfig()
+localReadConfig = readconfig.ReadConfig()
 
 
 class Log:
     def __init__(self):
         global logPath, resultPath, proDir
-        proDir = readConfig.proDir
+        proDir = readconfig.proDir
         resultPath = os.path.join(proDir, "result")
         if not os.path.exists(resultPath):
             os.mkdir(resultPath)
