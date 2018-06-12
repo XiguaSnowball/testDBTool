@@ -2,50 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1dbca6f5-6d0c-4ab8-997e-19077648d5e1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testDBTool/controller/sqlExecuteController.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testDBTool/model/utils/configDB.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testDBTool/model/utils/dbConfig.ini" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testDBTool/model/utils/readDBConfig.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testDBTool/model/utils/result/20180612190034/output.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testDBTool/model/utils/result/20180612190350/output.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testDBTool/model/utils/result/20180612190507/output.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testDBTool/model/utils/result/20180612190509/output.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testDBTool/model/utils/result/20180612190510/output.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testDBTool/model/utils/result/20180612190523/output.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testDBTool/model/utils/result/20180612190524/output.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testDBTool/model/utils/result/20180612190604/output.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testDBTool/model/utils/result/20180612190605/output.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testDBTool/model/utils/result/20180612190645/output.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testDBTool/model/utils/result/20180612190753/output.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testDBTool/model/utils/result/20180612190849/output.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testDBTool/model/utils/result/20180612190950/output.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testDBTool/model/utils/result/20180612191009/output.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testDBTool/model/utils/result/20180612191013/output.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testDBTool/model/utils/result/20180612191023/output.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testDBTool/model/utils/result/20180612191038/output.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testDBTool/static/fetch.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/readme.ini" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/runserver.py" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/testDBTool/config.ini" afterPath="$PROJECT_DIR$/testDBTool/model/utils/config.ini" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/testDBTool/result/20180516152650/output.log" afterPath="$PROJECT_DIR$/testDBTool/model/utils/result/20180612190012/output.log" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/testDBTool/task/__init__.py" afterPath="$PROJECT_DIR$/testDBTool/model/utils/task/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/testDBTool/task/selectDataByParams.py" afterPath="$PROJECT_DIR$/testDBTool/model/utils/task/selectDataByParams.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/testDBTool/testFile/SQL.xml" afterPath="$PROJECT_DIR$/testDBTool/model/utils/testFile/SQL.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/testDBTool/testFile/__init__.py" afterPath="$PROJECT_DIR$/testDBTool/model/utils/testFile/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/readme.ini" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/runserver.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setting.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testDBTool/__init__.py" afterPath="$PROJECT_DIR$/testDBTool/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testDBTool/controller/dbController.py" afterPath="$PROJECT_DIR$/testDBTool/controller/dbController.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testDBTool/controller/testController.py" afterPath="$PROJECT_DIR$/testDBTool/controller/testController.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testDBTool/controller/userController.py" afterPath="$PROJECT_DIR$/testDBTool/controller/userController.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testDBTool/model/utils/Log.py" afterPath="$PROJECT_DIR$/testDBTool/model/utils/Log.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testDBTool/model/utils/commonFun.py" afterPath="$PROJECT_DIR$/testDBTool/model/utils/commonFun.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testDBTool/model/utils/configDBBeta1.py" afterPath="$PROJECT_DIR$/testDBTool/model/utils/configDBBeta1.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testDBTool/model/utils/configDBLocal.py" afterPath="$PROJECT_DIR$/testDBTool/model/utils/configDBLocal.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testDBTool/model/utils/configDBVm.py" afterPath="$PROJECT_DIR$/testDBTool/model/utils/configDBVm.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testDBTool/static/dbmanager.html" afterPath="$PROJECT_DIR$/testDBTool/static/dbmanager.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testDBTool/static/index.html" afterPath="$PROJECT_DIR$/testDBTool/static/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testDBTool/static/login.html" afterPath="$PROJECT_DIR$/testDBTool/static/login.html" />
     </list>
     <ignored path="testDBTool.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -121,6 +82,16 @@
               <option name="myItemId" value="testDBTool" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="testDBTool" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="testDBTool" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="testDBTool" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
@@ -148,13 +119,21 @@
       <option name="presentableId" value="Default" />
       <updated>1526612145300</updated>
     </task>
+    <task id="LOCAL-00001" summary="结构修改">
+      <created>1528806412188</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1528806412188</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="2257" y="-176" width="2560" height="1417" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24980143" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24980143" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -162,7 +141,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32948422" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32948422" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -184,6 +163,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="结构修改" />
+    <option name="LAST_COMMIT_MESSAGE" value="结构修改" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
