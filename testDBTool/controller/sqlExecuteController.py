@@ -48,12 +48,15 @@ def sqlExecuteFun():
 
                 dbUtils.closeDB()
 
-            except sqlExecuteFun as ex:
+            except Exception as ex:
                 log.build_out_info_line('执行失败')
                 log.build_out_info_line(str(ex))
 
                 return jsonify({'message': "执行失败", "data": {"hostname": hostName}, "error": str(ex)})
-        return jsonify({'message': "执行完成", "data": {"hostname": hostNameList}, "sql": sqlStr})
+
+            finally:
+
+                return jsonify({'message': "执行完成", "data": {"hostname": hostNameList}, "sql": sqlStr})
 
 
     else:
