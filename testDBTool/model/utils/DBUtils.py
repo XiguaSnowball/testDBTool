@@ -58,12 +58,16 @@ class DBUtils:
         :param sql:
         :return:
         """
-        DBUtils.connectDB(hostName, database)
-        # executing sql
-        DBUtils.cursor.execute(sql.encode('utf-8'))
-        # executing by committing to DB
-        DBUtils.db.commit()
-        log.build_out_info_line("执行sql" + sql+"\nhost为"+hostName)
+        try:
+            DBUtils.connectDB(hostName, database)
+            # executing sql
+            DBUtils.cursor.execute(sql.encode('utf-8'))
+            # executing by committing to DB
+            DBUtils.db.commit()
+            log.build_out_info_line("执行sql" + sql+"\nhost为"+hostName)
+            log.build_out_info_line("执行成功")
+        except Exception as ex:
+            log.build_out_error_line(str(ex))
 
         return DBUtils.cursor
 

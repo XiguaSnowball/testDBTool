@@ -14,7 +14,7 @@ class Log:
         resultPath = os.path.join(proDir, "result")
         if not os.path.exists(resultPath):
             os.mkdir(resultPath)
-        logPath = os.path.join(resultPath, str(datetime.now().strftime("%Y%m%d%H%M%S")))
+        logPath = os.path.join(resultPath, str(datetime.now().strftime("%Y%m%d")))
         if not os.path.exists(logPath):
             os.mkdir(logPath)
         self.logger = logging.getLogger()
@@ -69,6 +69,15 @@ class Log:
         """
 
         self.logger.info('--------' + results_info)
+
+    def build_out_error_line(self, results_error):
+        """
+        输出check的具体结果
+        :param results_info:
+        :return:
+        """
+
+        self.logger.error('--------' + results_error)
 
     def get_report_path(self):
         """
