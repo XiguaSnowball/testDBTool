@@ -67,13 +67,6 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.6.0 virtualenv at ~/py3_work_env/py3_work_env1" project-jdk-type="Python SDK" />
-  <component name="PyConsoleOptionsProvider">
-    <option name="myPythonConsoleState">
-      <console-settings sdk-home="$USER_HOME$/py3_work_env/py3_work_env1/bin/python3">
-        <option name="mySdkHome" value="$USER_HOME$/py3_work_env/py3_work_env1/bin/python3" />
-      </console-settings>
-    </option>
-  </component>
   <component name="SvnConfiguration">
     <configuration>$USER_HOME$/.subversion</configuration>
   </component>

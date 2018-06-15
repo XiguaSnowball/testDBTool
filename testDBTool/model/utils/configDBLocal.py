@@ -1,10 +1,11 @@
 import pymysql
+from testDBTool.model.utils import configDBBeta1 as Beta1DB
 
 from testDBTool.model.utils import readConfig as readconfig
 from testDBTool.model.utils.Log import MyLog as mylog
 
 localReadConfig = readconfig.ReadConfig()
-
+configDBBeta1 = Beta1DB.MyBeta1DB()
 
 class MyLocalDB:
     global host, username, password, port, database, config
@@ -57,6 +58,9 @@ class MyLocalDB:
         self.db.commit()
 
         return self.cursor
+
+
+
 
     def get_all_dblocal(self, cursor):
         """

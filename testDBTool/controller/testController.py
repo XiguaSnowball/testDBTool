@@ -23,13 +23,13 @@ def index():
 @app.route('/test/login')
 def test_login():
     return app.send_static_file('login.html')
-
-
-@app.route('/beta1/bi_export/select1', methods=['GET'])
-def selectDataByParamsController1():
-    shop_no = 'BLDSD00001'
-    data_return = selectDataByParams.selectDataByParams(shop_no)
-    return data_return
+#
+#
+# @app.route('/beta1/bi_export/select1', methods=['GET'])
+# def selectDataByParamsController1():
+#     shop_no = 'BLDSD00001'
+#     data_return = selectDataByParams.selectDataByParams(shop_no)
+#     return data_return
 
 
 @auth.get_password
@@ -68,6 +68,7 @@ tasks = [
         'done': False
     }
 ]
+
 
 @app.route('/test/api/tasks', methods=['GET'])
 # @auth.login_required
@@ -133,3 +134,5 @@ def delete_task(task_id):
         abort(404)
     tasks.remove(task[0])
     return jsonify({'result': True})
+
+

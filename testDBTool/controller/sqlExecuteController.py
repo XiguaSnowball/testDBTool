@@ -1,29 +1,64 @@
-import json
+from flask import request
+from flask import json
 from flask.ext.httpauth import HTTPBasicAuth
-from flask import request, render_template, flash, abort, url_for, redirect, session
+import pandas as pd
 
-from testDBTool.model.utils.task import selectDataByParams as selectDataByParams
 from testDBTool import app
-from testDBTool.model.utils import commonFun
-from testDBTool.model.utils import configDB
+from testDBTool.model.utils import configDBBeta1 as Beta1DB
+from testDBTool.model.utils.commonFun import log
 
 auth = HTTPBasicAuth()
+configDBBeta1 = Beta1DB.MyBeta1DB()
 
 
 # 静态模板index.html等都放在‘/static/'下。　路由不用再加’/static/index.html‘而是'index.html'就好
 @app.route('/sqlExecute', methods=['POST'])
-def sqlExecuteFun(host_name, database_db, sqlStr):
-    """
+def sqlExecuteFun():
 
-    :param host_name:测试环境
-    :param database_db:数据库名
-    :param sqlStr:执行的sql
-    :return:
-    """
+    if request.method == 'POST':
+        inData = json.loads(request.get_data())
 
-    database_db = ""
-    sqlStr = ""
-    host_name = []
+        hostId = inData["hostId"]
+        databaseDB = inData["databaseDB"]
+        hostName = inData["hostName"]
+        sqlStr = inData["sqlStr"]
+
+        try:
+            dataBeta1 = configDBBeta1.executeSQLBeta1(sqlStr)
+            log.build_out_info_line('执行成功'+"\n执行sql为\n"+sqlStr)
+            # log.build_out_info_line(str(dataBeta1))
+            rs = dataBeta1.fetchall()
+            resultsData = pd.DataFrame(list(rs))
+            # print(resultsData)
+
+            configDBBeta1.closeDBBeta1()
+
+            return ('执行成功' + str(resultsData)+"\n执行sql为\n"+sqlStr)
+
+
+
+
+        except ConnectionError as ex:
+            log.build_out_info_line('查询失败')
+            log.build_out_info_line(str(ex))
+
+    else:
+        # return '<h1>只接受post请求！</h1>'
+        return
+#
+# @app.route('/test/json', methods=['GET', 'POST'])
+# def jsontest():
+#     if request.method == 'POST':
+#         a = request.get_data()
+#         dict1 = json.loads(a)
+#
+#         if dict1:
+#             # return str(d['title'])
+#             return json.dumps(dict1["opr"])
+#         else:
+#             return ('空的')
+#     else:
+#         return '<h1>只接受post请求！</h1>'
 
     # TODO ：for循环
     '''
@@ -39,23 +74,19 @@ def sqlExecuteFun(host_name, database_db, sqlStr):
 
     # TODO： 数据库配置写在配置文件中
     # TODO： 通用方法读取配置文件
-
-
-
-    sql1 = commonFun.get_sql('bi_export', 'crm_shop_daily', 'select_shop_daily_all')
-    sql2 = commonFun.get_sql('bi_export', 'crm_shop_daily', 'select_shop_daily')
-    try:
-        # 生成带参数的sql
-        cursor1 = configDB.executeSQL(sql1, None)
-        # 执行sql
-        dataLocal = configDB.get_all(cursor1)
-
-        print(dataLocal)
-        print('-----------------------')
-        print(dataBeta1)
-
-        log.build_out_info_line('查询成功')
-
-    except ConnectionError as ex:
-        log.build_out_info_line('查询失败')
-        log.build_out_info_line(str(ex))
+    #
+    # try:
+    #     # 生成带参数的sql
+    #     cursor1 = configDB.executeSQL(sql1, None)
+    #     # 执行sql
+    #     dataLocal = configDB.get_all(cursor1)
+    #
+    #     print(dataLocal)
+    #     print('-----------------------')
+    #     print(dataBeta1)
+    #
+    #     log.build_out_info_line('查询成功')
+    #
+    # except ConnectionError as ex:
+    #     log.build_out_info_line('查询失败')
+    #     log.build_out_info_line(str(ex))

@@ -21,11 +21,9 @@ def selectDataByParams(shopNo):
         dataLocal = configDBLocal.get_all_dblocal(cursor1)
         dataBeta1 = configDBBeta1.get_all_dbBeta1(cursor2)
 
-        print(dataLocal)
-        print('-----------------------')
-        print(dataBeta1)
 
         log.build_out_info_line('查询成功')
+        return dataBeta1
 
     except ConnectionError as ex:
         log.build_out_info_line('查询失败')
