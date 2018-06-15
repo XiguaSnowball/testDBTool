@@ -53,20 +53,20 @@ class MyDB:
 
         return self.cursor
 
-    def executeSQLByDatabase(self, sql, params):
-        """
-        execute sql
-        :param sql:
-        :return:
-        """
-        self.connectDB()
-        # executing sql
-        self.cursor.execute(sql, params)
-        # executing by committing to DB
-        self.db.commit()
-        self.log.build_out_info_line("执行sql")
-
-        return self.cursor
+    # def executeSQLByDatabase(self, sql, databaseName):
+    #     """
+    #     execute sql
+    #     :param sql:
+    #     :return:
+    #     """
+    #     self.connectDB()
+    #     # executing sql
+    #     self.cursor.execute(sql,)
+    #     # executing by committing to DB
+    #     self.db.commit()
+    #     self.log.build_out_info_line("执行sql")
+    #
+    #     return self.cursor
 
     def get_all(self, cursor):
         """
