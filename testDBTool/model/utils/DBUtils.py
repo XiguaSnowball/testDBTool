@@ -64,8 +64,8 @@ class DBUtils:
             DBUtils.cursor.execute(sql.encode('utf-8'))
             # executing by committing to DB
             DBUtils.db.commit()
-            log.build_out_info_line("执行sql" + sql+"\nhost为"+hostName)
-            log.build_out_info_line("执行成功")
+            log.build_out_info_line("执行sql" + sql)
+            log.build_out_info_line("执行成功"+"=====host为"+hostName)
         except Exception as ex:
             log.build_out_error_line(str(ex))
 
