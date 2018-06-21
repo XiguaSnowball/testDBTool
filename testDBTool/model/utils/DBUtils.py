@@ -44,12 +44,14 @@ class DBUtils:
         try:
             # connect to DB
             config = DBUtils.get_db(hostName,database)
-            DBUtils.db = pymysql.connect(**config)
+            DBUtils.db = pymysql.connect(**config, charset='utf8')
             # create cursor
             DBUtils.cursor = DBUtils.db.cursor()
             log.build_out_info_line("Connect DB successfully!")
         except ConnectionError as ex:
             logger.error(str(ex))
+        return DBUtils.cursor
+
 
     def executeSQL(hostName,database,sql):
         """
@@ -69,7 +71,6 @@ class DBUtils:
         except Exception as ex:
             log.build_out_error_line(str(ex))
 
-        return DBUtils.cursor
 
     def get_all(cursor):
         """

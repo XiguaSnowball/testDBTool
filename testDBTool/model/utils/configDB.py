@@ -31,7 +31,7 @@ class MyDB:
         """
         try:
             # connect to DB
-            self.db = pymysql.connect(**config)
+            self.db = pymysql.connect(**config, charset="utf8")
             # create cursor
             self.cursor = self.db.cursor()
             self.log.build_out_info_line("Connect DB successfully!")

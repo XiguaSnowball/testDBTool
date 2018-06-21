@@ -21,24 +21,11 @@ def sqlExecuteFun():
 
         database = inData["database"]
         hostNameList = inData["hostNameList"]
-        sqlStr = inData["sqlStr"]
+        # sqlStr = inData["sqlStr"]
 
         # sqlStr = """CREATE TABLE `gms_template_goods_shelf` (`id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',`template_name` varchar(10) COLLATE utf8_bin NOT NULL COMMENT '模板展示名称',`template_inner_name` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '模板内部名称',`template_type` varchar(10) COLLATE utf8_bin DEFAULT NULL COMMENT '模板分类:A-100人以上|B-100人以下|X-特殊类',`store_condition` tinyint(1) NOT NULL COMMENT '存储条件 (1,"冷藏";2,"常温";3,"冷冻",4,"加热")',`cities` varchar(1000) COLLATE utf8_bin NOT NULL DEFAULT '''''' COMMENT '模板匹配的城市',`status` tinyint(1) NOT NULL COMMENT '启用状态：1：启用；0：禁用',`create_time` datetime NOT NULL COMMENT '模板创建时间',`create_user` varchar(30) COLLATE utf8_bin NOT NULL COMMENT '创建货架模板用户',`update_time` datetime DEFAULT NULL COMMENT '更新时间',`update_user` varchar(30) COLLATE utf8_bin DEFAULT NULL COMMENT '更新货架模板用户',`del_flag` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1:正常|0:删除',PRIMARY KEY (`id`)) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8 COLLATE=utf8_bin; """
 
-        #         sqlStr = """CREATE TABLE `pss_city_template` (
-        #   `id` int(11) NOT NULL AUTO_INCREMENT,
-        #   `city_id` int(11) NOT NULL COMMENT '城市id',
-        #   `grade` varchar(4) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '等级编码',
-        #   `store_condition` smallint(2) DEFAULT NULL COMMENT '存储条件',
-        #   `template_id` int(11) NOT NULL COMMENT '模版id',
-        #   `is_default` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1:默认|0:非默认',
-        #   `create_user` varchar(30) NOT NULL COMMENT '创建人',
-        #   `create_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
-        #   `update_user` varchar(30) DEFAULT NULL COMMENT '修改人',
-        #   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
-        #   `del_flag` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1:正常|0:删除',
-        #   PRIMARY KEY (`id`)
-        # ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='公司模版默认信息';"""
+        sqlStr = """ALTER TABLE `crm_company_approval` MODIFY COLUMN `pics` varchar(1200) NOT NULL DEFAULT '' COMMENT '图片饿' AFTER `repeat_company_ids`;"""
 
         for hostName in hostNameList:
             try:
