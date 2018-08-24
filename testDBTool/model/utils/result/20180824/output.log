@@ -1,0 +1,11 @@
+2018-08-24 11:18:37,235 - werkzeug - INFO -  * Running on http://127.0.0.1:12139/ (Press CTRL+C to quit)
+2018-08-24 11:18:37,238 - werkzeug - INFO -  * Restarting with stat
+2018-08-24 11:18:39,780 - werkzeug - WARNING -  * Debugger is active!
+2018-08-24 11:18:39,806 - werkzeug - INFO -  * Debugger PIN: 319-779-627
+2018-08-24 11:20:06,786 - werkzeug - INFO -  * Running on http://127.0.0.1:12138/ (Press CTRL+C to quit)
+2018-08-24 11:20:06,788 - werkzeug - INFO -  * Restarting with stat
+2018-08-24 11:20:07,642 - werkzeug - WARNING -  * Debugger is active!
+2018-08-24 11:20:07,658 - werkzeug - INFO -  * Debugger PIN: 319-779-627
+2018-08-24 11:20:09,441 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 11:20:09] "GET /dbmanager.html HTTP/1.1" 304 -
+2018-08-24 11:20:15,334 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 11:20:15] "POST /sqlFormat HTTP/1.1" 200 -
+2018-08-24 11:20:23,806 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 11:20:23] "POST /sqlFormat HTTP/1.1" 200 -

@@ -1,28 +1,297 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:color="http://www.w3.org/1999/xhtml">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>数据库管理页面</title>
+    <link href="css/demo.css" rel="stylesheet" type="text/css">
+    <script src="./js/vue.js"></script>
+    <script src="./js/axios.js"></script>
+    <script src="./js/requestUrls.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
 </head>
 
 <body>
-<button class='btnHandle'>fetch(GET)</button>
-</body>
+
+<section id="getintouch" class="flipInX animated">
+    <div class="container" style="border-bottom: 0;">
+        <h1>
+            <span>数据库维护工具</span>
+        </h1>
+    </div>
+    <div class="container">
+        <form class="contact" method="POST" id="dbForm">
+            <div class="row clearfix">
+                <fieldset>
+                    <legend class="optional">填写服务器信息</legend>
+                    <div class="form-row-select">
+                        <fieldset>
+                            <legend class="optional">选择服务器</legend>
+                            <label class="left">
+                                <div v-for="(item, index) in hostNameListFe">
+                                    <input type="checkbox" class="checkbox_input"
+                                           :id="item.id"
+                                           :key="item.id" :value="item.value"
+                                           v-model="infoInput.hostNameList"/>{{item.value}}<br/>
+                                </div>
+                            </label>
+                            <label class="left">
+                                <div v-for="(item, index) in hostNameListFe1">
+                                    <input type="checkbox" class="checkbox_input"
+                                           :id="item.id"
+                                           :key="item.id" :value="item.value"
+                                           v-model="infoInput.hostNameList"/>{{item.value}}<br/>
+                                </div>
+                            </label>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <span v-show="flags.showFlag == 1" style="color:red;float:left"> !!!!不能为空!!!!</span>
+
+                        </fieldset>
+
+
+                        <!-- <div class="row clearfix">
+                            <div class="lbl">
+                                <label for="HostIn">测试环境Host</label>
+                            </div>
+                            <div class="ctrl">
+                                <input type="text" id="HostIn" data-required="true" data-validation="text" data-msg="Invalid Host" placeholder="127.0.0.1">
+                            </div>
+                        </div> -->
+
+                        <div class="row clearfix">
+                            <div class="lbl">
+                                <label for="Database">Database_db<span v-show="flags.showFlag == 1" style="color:red"> !!!!不能为空!!!!</span></label>
+                            </div>
+                            <div class="ctrl">
+                                <input type="text" id="Database" placeholder="grampus_crm"
+                                       v-model="infoInput.database">
+                            </div>
+                        </div>
+
+
+                        <div class="row clearfix">
+                            <div class="lbl">
+                                <label for="Database">Database_db&nbsp;</label>
+                            </div>
+                        </div>
+
+                        <div class="row clearfix">
+
+                            <el-select v-model="infoInput.database" placeholder="请选择db">
+                                <el-option
+                                        v-for="item in dbList"
+                                        :key="item.value"
+                                        :id="item.id"
+                                        :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend class="optional">填写SQL+备注</legend>
+
+
+                    <div class="row clearfix">
+                        <div class="lbl">
+                            <label for="sql">SQL<span v-show="flags.showFlag == 1"
+                                                      style="color:red"> !!!!不能为空!!!!</span></label>
+                            <br>
+                        </div>
+                        <div class="ctrl">
+                            <textarea id="sql" rows="6" cols="10"
+                                      v-model="infoInput.sqlStr"></textarea>{{infoInput.sqlStr}}
+                        </div>
+                    </div>
+
+
+                    <div class="row clearfix">
+                        <div class="lbl">
+                            <label for="sql">备注</label>
+                        </div>
+                        <div class="ctrl">
+                            <textarea id="comments" rows="6" cols="10"
+                                      v-model="infoInput.comments"></textarea>{{infoInput.comments}}
+                        </div>
+                    </div>
+
+                </fieldset>
+
+                <div class="row  clearfix">
+                    <div class="span10 offset2">
+                        <el-button type="primary" :loading="loading" @click="validationFun">执行</el-button>
+                        <el-button type="reset" @click="resetInfoInput">清空</el-button>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+        <fieldset v-show="flags.resultShowFlag == 1">
+            <legend class="optional">执行结果</legend>
+            <div class="form-row-select" v-for="resultItem in resultInfo.excuResultList">
+                <fieldset>
+                    <legend class="optional">{{resultItem.host}}</legend>
+                    <span v-if="resultItem.msg == '执行成功'">执行结果:<span
+                            style="color:green">{{resultItem.msg}}</span><br/></span>
+                    <span v-if="resultItem.msg == '执行失败'">执行结果:<span
+                            style="color:red">{{resultItem.msg}}</span><br/></span>
+                    <span v-if="resultItem.error !=''">错误信息:<span
+                            style="color:red">{{resultItem.error}}</span><br/></span>
+                </fieldset>
+            </div>
+        </fieldset>
+
+    </div>
+</section>
 <script>
-    const btn = document.querySelector('.btnHandle');
-    btn.addEventListener('click', () = > {
-        fetch('http://localhost:63343/test/api/tasks'
-    ).then(success = > {
-        console.log('---------');
-    console.log(success);
-    console.log('---------');
-    }).catch(err = > {
-        console.debug(err);
-    })
+
+    // Vue.use(ElementUI);
+
+    new Vue({
+        el: '#getintouch',
+        data: {
+            flags: {
+                showFlag: 0,
+                resultShowFlag: 0,
+            },
+
+            loading: false,
+            hostNameListFe: [{
+                id: "Host-beta1",
+                value: "beta1"
+            }, {
+                id: "Host-beta2",
+                value: "beta2"
+            }, {
+                id: "Host-beta3",
+                value: "beta3"
+            }, {
+                id: "Host-beta4",
+                value: "beta4"
+            }],
+            hostNameListFe1: [{
+                id: "Host-beta5",
+                value: "beta5"
+            }, {
+                id: "Host-beta6",
+                value: "beta6"
+            }, {
+                id: "Host-beta7",
+                value: "beta7"
+            }, {
+                id: "Host-beta8",
+                value: "beta8"
+            }],
+            dbList: [{
+                id: "grampus",
+                value: "grampus"
+            }, {
+                id: "grampus_crm",
+                value: "grampus_crm"
+            }, {
+                id: "grampus_erp",
+                value: "grampus_erp"
+            }, {
+                id: "bi-api",
+                value: "bi-api"
+            }],
+
+            url: urls[0].sqlExecute,
+
+            infoInput: {
+                sqlStr: '',
+                database: '',
+                hostNameList: [],
+                comments: '',
+
+            },
+
+            resultInfo: {
+                resultHost: '',
+                resultMsg: '',
+                resultError: '',
+                resultExcuResultMsg: '',
+                excuResultList: []
+            },
+
+        },
+        methods: {
+            validationFun() {
+                this.flags.showFlag = 0;
+
+                if (this.infoInput.hostNameList.length == 0 || this.infoInput.database == '' || this.infoInput.sqlStr == '') {
+                    this.flags.showFlag = 1;
+                    return;
+                }
+                this.loading = true;
+                this.sqlExecuteFun();
+            },
+            sqlExecuteFun() {
+                var vm = this;
+                axios.post(this.url, {
+                    database: this.infoInput.database,
+                    hostNameList: this.infoInput.hostNameList,
+                    sqlStr: this.infoInput.sqlStr
+                }).then(function (response) {
+                    // debugger
+                    if (response.data.code == 0) {
+                        vm.loading = false;
+
+                        // debugger
+                        vm.resultInfo.resultMsg = response.data.msg;
+                        vm.resultInfo.excuResultList = response.data.excuResult;
+                        vm.flags.resultShowFlag = 1;
+                        vm.$message({
+                            showClose: true,
+                            message: vm.resultInfo.resultMsg+"，在页面下方查看执行结果"
+                        });
+                        return;
+                    }
+
+                }).catch(function (error) {
+                    vm.$message({
+                        showClose: true,
+                        message: "失败"
+                    });
+                })
+            },
+            resetInfoInput() {
+                this.infoInput.comments='';
+                this.infoInput.database='';
+                this.infoInput.hostNameList=[];
+                this.infoInput.sqlStr='';
+
+            }
+        },
+
+
+        created() {
+        },
+
     })
 </script>
+
+</body>
 
 </html>

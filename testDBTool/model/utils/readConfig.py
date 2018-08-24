@@ -22,36 +22,28 @@ class ReadConfig:
         self.cf = configparser.ConfigParser()
         self.cf.read(configPath)
 
-    #
-    # def get_email(self, name):
-    #     value = self.cf.get("EMAIL", name)
-    #     return value
+    def get_email(self, name):
+        value = self.cf.get("EMAIL", name)
+        return value
 
     def get_http(self, name):
         value = self.cf.get("HTTP", name)
         return value
 
-    # def get_headers(self, name):
-    #     value = self.cf.get("HEADERS", name)
-    #     return value
-
-    # def set_headers(self, name, value):
-    #     self.cf.set("HEADERS", name, value)
-    #     with open(configPath, 'w+') as f:
-    #         self.cf.write(f)
-    #
-    # def get_url(self, name):
-    #     value = self.cf.get("URL", name)
-    #     return value
-    #
-    def get_db_local(self, name):
-        value = self.cf.get("DATABASE_L", name)
+    def get_headers(self, name):
+        value = self.cf.get("HEADERS", name)
         return value
 
-    def get_db_vm(self, name):
-        value = self.cf.get("DATABASE_V", name)
+    def set_headers(self, name, value):
+        self.cf.set("HEADERS", name, value)
+        with open(configPath, 'w+') as f:
+            self.cf.write(f)
+
+    def get_url(self, name):
+        value = self.cf.get("URL", name)
         return value
 
-    def get_db_beta1(self, name):
-        value = self.cf.get("DATABASE_BETA1", name)
+    def get_db_info(self, hostName, name):
+        value = self.cf.get(hostName, name)
+        # print(value)
         return value

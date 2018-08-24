@@ -1,61 +1,19 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+﻿<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:color="http://www.w3.org/1999/xhtml"
+      xmlns:v-on="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>数据库管理页面</title>
     <link href="css/demo.css" rel="stylesheet" type="text/css">
-    <script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
-    <!--Framework-->
-    <script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
-    <script src="js/jquery-ui.js" type="text/javascript"></script>
-    <!--End Framework-->
-    <script src="js/jquery.ffform.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#form').ffform({
-                animation: 'fade',
-                submitButton: '#submit',
-                validationIndicator: '#validation',
-                errorIndicator: '#error',
-                successIndicator: '#success',
-                'fields': [{
-                    'id': 'database',
-                    required: true,
-                    requiredMsg: 'Database is required',
-                    type: 'alpha',
-                    validate: true,
-                    msg: 'Invalid Database'
-                }, {
-                    'id': 'host',
-                    required: true,
-                    requiredMsg: 'Host is required',
-                    type: 'text',
-                    validate: true,
-                    msg: 'Invalid Host'
-                }, {
-                    'id': 'username',
-                    required: false,
-                    type: 'text',
-                    validate: false,
-                    msg: 'Invalid Username'
-                }, {
-                    'id': 'port',
-                    required: false,
-                    type: 'alpha',
-                    validate: false,
-                    msg: 'Invalid Port'
-                }, {
-                    'id': 'password',
-                    required: false,
-                    type: 'password',
-                    validate: false,
-                    msg: 'Invalid Password'
-                }]
-            });
-        });
-    </script>
+    <script src="./js/vue.js"></script>
+    <script src="./js/axios.js"></script>
+    <script src="./js/requestUrls.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
 </head>
 
 <body>
@@ -63,115 +21,56 @@
 <section id="getintouch" class="flipInX animated">
     <div class="container" style="border-bottom: 0;">
         <h1>
-            <span>输入数据库信息</span>
+            <span>数据库维护工具</span>
         </h1>
     </div>
     <div class="container">
-        <form class="contact" action="#" method="post" id="form">
+        <form class="contact" method="POST" id="dbForm">
             <div class="row clearfix">
-
                 <fieldset>
                     <legend class="optional">填写服务器信息</legend>
                     <div class="form-row-select">
                         <fieldset>
-                            <legend class="optional">选择服务器或输入Host</legend>
-                            <label class="left">
-                                <input type="checkbox" class="checkbox_input" name="Host" id="Host-localhost"
-                                       value="127.0.0.1"/>localhost <br/>
-                                <input type="checkbox" class="checkbox_input" name="Host" id="Host-Beta1"
-                                       value="10.7.2.16"/>Beta1<br/>
-                                <input type="checkbox" class="checkbox_input" name="Host" id="Host-Beta2"
-                                       value="10.7.3.10"/>Beta2<br/>
-                                <input type="checkbox" class="checkbox_input" name="Host" id="Host-Beta3"
-                                       value="10.7.4.7"/>Beta3<br/>
-                                <input type="checkbox" class="checkbox_input" name="Host" id="Host-本地虚拟机"
-                                       value="10.6.90.164"/>本地虚拟机<br/>
-
-                            </label>
-                            <label class="left">
-                                <input type="checkbox" class="checkbox_input" name="Host" id="Host-female" value="2"/>待定<br/>
-                                <input type="checkbox" class="checkbox_input" name="Host" id="Host-female" value="2"/>待定<br/>
-                                <input type="checkbox" class="checkbox_input" name="Host" id="Host-female" value="2"/>待定<br/>
-                                <input type="checkbox" class="checkbox_input" name="Host" id="Host-female" value="2"/>待定<br/>
-                                <input type="checkbox" class="checkbox_input" name="Host" id="Host-female" value="2"/>待定<br/>
+                            <legend class="optional">选择服务器</legend>
+                            <label class="left" style="padding-bottom: 15px;">
+                                <el-checkbox :indeterminate="flags.isIndeterminate" v-model="flags.checkAll"
+                                             @change="handleCheckAllChange">全选
+                                </el-checkbox>
+                                <br/>
+                                <div style="margin: 15px 0;"></div>
+                                <el-checkbox-group v-model="infoInput.hostNameList" @change="handleCheckedHostChange">
+                                    <el-checkbox-button v-for="item in hostNameListFe" :label="item"
+                                                        :key="item">{{item}}
+                                    </el-checkbox-button>
+                                </el-checkbox-group>
                             </label>
 
-                            <label class="left">
-                                <input type="checkbox" class="checkbox_input" name="Host" id="Host-female" value="2"/>待定<br/>
-                                <input type="checkbox" class="checkbox_input" name="Host" id="Host-female" value="2"/>待定<br/>
-                                <input type="checkbox" class="checkbox_input" name="Host" id="Host-female" value="2"/>待定<br/>
-                                <input type="checkbox" class="checkbox_input" name="Host" id="Host-female" value="2"/>待定<br/>
-                                <input type="checkbox" class="checkbox_input" name="Host" id="Host-female" value="2"/>待定<br/>
-                            </label>
-                            <label class="left">
-                                <input type="checkbox" class="checkbox_input" name="Host" id="Host-female" value="2"/>待定<br/>
-                                <input type="checkbox" class="checkbox_input" name="Host" id="Host-female" value="2"/>待定<br/>
-                                <input type="checkbox" class="checkbox_input" name="Host" id="Host-female" value="2"/>待定<br/>
-                                <input type="checkbox" class="checkbox_input" name="Host" id="Host-female" value="2"/>待定<br/>
-                                <input type="checkbox" class="checkbox_input" name="Host" id="Host-female" value="2"/>待定<br/>
-                            </label>
-                            <label class="left">
-                                <input type="checkbox" class="checkbox_input" name="Host" id="Host-female" value="2"/>待定<br/>
-                                <input type="checkbox" class="checkbox_input" name="Host" id="Host-female" value="2"/>待定<br/>
-                                <input type="checkbox" class="checkbox_input" name="Host" id="Host-female" value="2"/>待定<br/>
-                                <input type="checkbox" class="checkbox_input" name="Host" id="Host-female" value="2"/>待定<br/>
-                                <input type="checkbox" class="checkbox_input" name="Host" id="Host-female" value="2"/>待定<br/>
-                            </label>
+
+                            <span v-show="flags.showFlag == 1" style="color:red;float:left"> !!!!不能为空!!!!</span>
+
                         </fieldset>
 
-
-                            <div class="row clearfix">
-                                <div class="lbl">
-                                    <label for="host">
-                                        测试环境Host</label>
-                                </div>
-                                <div class="ctrl">
-                                    <input type="text" id="host" name="host" data-required="true" data-validation="text"
-                                           data-msg="Invalid Host" placeholder="127.0.0.1"></div>
-                                <!--
-                                <div class="row clearfix">
-                                    <div class="lbl">
-                                        <label for="username">
-                                        Username</label>
-                                    </div>
-                                    <div class="ctrl">
-                                        <input type="text" id="username" name="username" data-required="true" data-validation="username" data-msg="Invalid username" placeholder="root">
-                                    </div>
-                                </div>
-
-                                <div class="row clearfix">
-                                    <div class="lbl">
-                                        <label for="password">
-                                        Password</label>
-                                    </div>
-                                    <div class="ctrl">
-                                        <input type="text" id="password" name="password" data-required="true" data-validation="custom" data-msg="Invalid password #" placeholder="123456">
-                                    </div>
-                                </div> -->
-                                <div class="row clearfix">
-                                    <div class="lbl">
-                                        <label for="database">
-                                            Database_db</label>
-                                    </div>
-                                    <div class="ctrl">
-                                        <input type="text" name="database" id="database" placeholder="grampus_crm">
-                                    </div>
-                                </div>
-                                <!-- 
-                            <div class="row clearfix">
-                                <div class="lbl">
-                                    <label for="port">
-                                        Port</label>
-                                </div>
-                                <div class="ctrl">
-                                    <input type="text" name="port" id="port" placeholder="3306" value="3306">
-                                </div>
-                            </div> -->
-
-
+                        <div class="row clearfix">
+                            <div class="lbl">
+                                <label for="Database">选择database或输入&nbsp;</label>
                             </div>
-                </fieldset>
+                        </div>
 
+                        <div class="row clearfix">
+
+                            <el-select v-model="infoInput.database" placeholder="请选择db">
+                                <el-option
+                                        v-for="item in dbList"
+                                        :key="item.value"
+                                        :id="item.id"
+                                        :value="item.value">
+                                </el-option>
+                            </el-select>
+                            <input type="text" id="Database" placeholder="grampus_crm" v-model="infoInput.database">
+
+                        </div>
+                    </div>
+                </fieldset>
 
                 <fieldset>
                     <legend class="optional">填写SQL+备注</legend>
@@ -179,48 +78,221 @@
 
                     <div class="row clearfix">
                         <div class="lbl">
-                            <label for="sql">
-                                SQL</label>
+                            <label for="sql">SQL<span v-show="flags.showFlag == 1"
+                                                      style="color:red"> !!!!不能为空!!!!</span></label>
                             <br>
                         </div>
                         <div class="ctrl">
-                            <textarea id="sql" name="sql" rows="6" cols="10"></textarea>
+                            <textarea id="sql" rows="6" cols="10" v-model="infoInput.sqlStr"
+                                      @blur.prevent="sqlFormat"></textarea>
+                            <span style="font: message-box;color: #555555" v-html="resultInfo.queryResult">{{resultInfo.queryResult}}</span>
                         </div>
-                        </div>
+                    </div>
 
 
                     <div class="row clearfix">
                         <div class="lbl">
-                            <label for="sql">
-                                备注</label>
+                            <label for="sql">备注</label>
                         </div>
                         <div class="ctrl">
-                            <textarea id="comments" name="comments" rows="6" cols="10"></textarea>
+                            <textarea id="comments" rows="6" cols="10"
+                                      v-model="infoInput.comments"></textarea>
+                            <span style="font: message-box;color: #555555">{{infoInput.comments}}</span>
                         </div>
-                        </div>
-                        </div>
-            </fieldset>
+                    </div>
 
-            <div class="row  clearfix">
-                <div class="span10 offset2">
-                    <input type="submit" name="submit" id="submit" class="submit" value="执行输入SQL">
+                </fieldset>
+
+                <div class="row  clearfix">
+                    <div class="span10 offset2">
+                        <el-button type="primary" :loading="flags.loading" @click="validationFun">执行</el-button>
+                        <el-button type="reset" @click="resetInfoInput">清空</el-button>
+
+                    </div>
                 </div>
             </div>
-                </div>
-
-    </form>
+        </form>
 
 
-    <div id="success">
-        已成功执行!
-    </div>
-    <div id="error">
-        操作失败.
-    </div>
-    <div id="validation">
-    </div>
+        <fieldset v-show="flags.resultShowFlag == 1">
+            <legend class="optional">执行结果</legend>
+            <div class="form-row-select-result" style=" padding-right: 20px;padding-left: 15px;"
+                 v-for="resultItem in resultInfo.excuResultList">
+                <fieldset>
+                    <legend class="optional">{{resultItem.host}}</legend>
+                    <span v-if="resultItem.msg == '执行成功'">执行结果: <span
+                            style="color:green">{{resultItem.msg}}</span><br/></span>
+                    <span v-if="resultItem.msg == '执行失败'">执行结果: <span
+                            style="color:red">{{resultItem.msg}}</span><br/></span>
+                    <span v-if="resultItem.error !=''">错误信息: <span
+                            style="color:red">{{resultItem.error}}</span><br/></span>
+                </fieldset>
+            </div>
+        </fieldset>
+
     </div>
 </section>
+<script>
+    new Vue({
+        el: '#getintouch',
+        data: {
+            flags: {
+                showFlag: 0,
+                resultShowFlag: 0,
+                checkAll: false,
+                isIndeterminate: true,
+                loading: false,
+            },
+
+            hostNameListFe: ["beta1", "beta2", "beta3", "beta4", "beta5", "beta6", "beta7", "beta8"],
+            dbList: [{
+                id: "grampus",
+                value: "grampus"
+            }, {
+                id: "grampus_crm",
+                value: "grampus_crm"
+            }, {
+                id: "grampus_erp",
+                value: "grampus_erp"
+            }, {
+                id: "bi_export",
+                value: "bi_export"
+            }, {
+                id: "grampus_rep",
+                value: "grampus_rep"
+            }, {
+                id: "grampus_oa",
+                value: "grampus_oa"
+            }, {
+                id: "grampus_ccs",
+                value: "grampus_ccs"
+            }, {
+                id: "grampus_cms",
+                value: "grampus_cms"
+            }, {
+                id: "grampus_coupon",
+                value: "grampus_coupon"
+            }, {
+                id: "grampus_ehs",
+                value: "grampus_ehs"
+            }, {
+                id: "grampus_ess",
+                value: "grampus_ess"
+            }, {
+                id: "grampus_marketing",
+                value: "grampus_marketing"
+            }, {
+                id: "grampus_order",
+                value: "grampus_order"
+            }, {
+                id: "grampus_pss",
+                value: "grampus_pss"
+            }, {
+                id: "grampus_smart",
+                value: "grampus_smart"
+            }, {
+                id: "grampus_user",
+                value: "grampus_user"
+            }, {
+                id: "bms_production",
+                value: "bms_production"
+            }],
+
+            url: urls[0].sqlExecute,
+            url1: urls[1].sqlFormat,
+
+            infoInput: {
+                sqlStr: '',
+                database: '',
+                hostNameList: [],
+                comments: '',
+                sqlStrToFormat:''
+
+            },
+            resultInfo: {
+                resultHost: '',
+                resultMsg: '',
+                resultError: '',
+                resultExcuResultMsg: '',
+                excuResultList: [],
+
+                queryResult: null
+            },
+        },
+        methods: {
+            validationFun() {
+                this.flags.showFlag = 0;
+
+                if (this.infoInput.hostNameList.length == 0 || this.infoInput.database == '' || this.infoInput.sqlStr == '') {
+                    this.flags.showFlag = 1;
+                    return;
+                }
+                this.flags.loading = true;
+                this.sqlExecuteFun();
+            },
+            sqlExecuteFun() {
+                var vm = this;
+                axios.post(this.url, {
+                    database: this.infoInput.database,
+                    hostNameList: this.infoInput.hostNameList,
+                    sqlStr: this.infoInput.sqlStr
+                }).then(function (response) {
+                    if (response.data.code == 0) {
+                        vm.flags.loading = false;
+                        vm.resultInfo.resultMsg = response.data.msg;
+                        vm.resultInfo.excuResultList = response.data.excuResult;
+                        vm.flags.resultShowFlag = 1;
+                        vm.$message({
+                            showClose: true,
+                            message: vm.resultInfo.resultMsg + "，在页面下方查看执行结果",
+                            type: 'success'
+                        })
+                        return;
+                    }
+                }).catch(function (error) {
+                    vm.$message.error('失败咯');
+                    return;
+                })
+            },
+            resetInfoInput() {
+                this.infoInput.comments = '';
+                this.infoInput.database = '';
+                this.infoInput.hostNameList = [];
+                this.infoInput.sqlStr = '';
+                this.resultInfo.queryResult = '';
+            },
+            handleCheckAllChange(val) {
+                this.infoInput.hostNameList = val ? this.hostNameListFe : [];
+                this.flags.isIndeterminate = false;
+            },
+            handleCheckedHostChange(value) {
+                checkedCount = value.length;
+                this.flags.checkAll = checkedCount === this.hostNameListFe.length;
+                this.flags.isIndeterminate = checkedCount > 0 && checkedCount < this.hostNameListFe.length;
+            },
+            sqlFormat() {
+                var vm = this;
+                // debugger
+                axios.post(this.url1, {
+                    sqlStrToFormat: this.infoInput.sqlStr
+                }).then(function (response) {
+                    if (response.data.status == 1) {
+                        vm.resultInfo.queryResult = response.data.result;
+
+                        return ;
+                    }
+                }).catch(function (error) {
+                    vm.$message.error('失败咯22');
+                    return;
+                })
+            },
+        },
+        created() {
+        },
+
+    })
+</script>
+
 </body>
 
 </html>

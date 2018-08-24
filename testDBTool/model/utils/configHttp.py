@@ -1,7 +1,7 @@
 import requests
-import readConfig as readConfig
-from utils.Log import MyLog as Log
-from utils import commonFun
+import testDBTool.model.utils.readConfig as readConfig
+from testDBTool.model.utils.Log import MyLog as Log
+from testDBTool.model.utils import commonFun
 import json
 
 localReadConfig = readConfig.ReadConfig()
@@ -14,7 +14,6 @@ class ConfigHttp:
         host = localReadConfig.get_http("baseurl")
         port = localReadConfig.get_http("port")
         timeout = localReadConfig.get_http("timeout")
-
         self.log = Log.get_log()
         self.logger = self.log.get_logger()
         self.headers = {}
@@ -64,7 +63,7 @@ class ConfigHttp:
         :return:
         """
         if filename != '':
-            file_path = '/Users/gzit000567/PycharmProjects/interfaceTest/testFile/img/' + filename
+            file_path = '' + filename
             self.files = {'file': open(file_path, 'rb')}
 
         if filename == '' or filename is None:

@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <script src="./js/vue.js"></script>
+    <script src="./js/axios.js"></script>
+    <script src="./js/requestUrls.js"></script>
+
+
+    <!-- <script src="../js/vueJs/vue-resource.js"></script> -->
+
+</head>
+
+<body>
+    <div id="app">
+        <div v-html="message"></div>
+        <div>{{dataTest}}</div>
+        <input type="text" v-model="name"> {{name}}
+    </div>
+
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: '<div>菜鸟教程</div>',
+                dataTest: '<h1>haieufhalsdkfj</h1>',
+                name: 'www',
+                lastName: 'www',
+                url: urls[0].user,
+
+            },
+            methods: {
+
+                getJson() {
+                    debugger
+                    this.name
+                    axios.post(this.url, {
+                        firstName: this.name,
+                        lastName: this.lastName,
+                    }).then(function(response) {
+                        console.log(response);
+                    }).catch(function(error) {
+                        console.log(error);
+                    })
+                }
+            },
+            created() {
+                debugger
+                urls
+                this.getJson()
+            },
+
+        })
+
+        // function postRequest(url, params) {
+        //     return new Promise((resolve, reject) => {
+        //         Vue.$http.post(
+        //                 url, {
+        //                     params
+        //                 }, {
+        //                     emulateJSON: true
+        //                 }
+        //             )
+        //             .then((res) => { //成功胡回调
+        //                 resolve(res.body);
+        //             })
+        //             .catch((res) => { //失败的回掉
+        //                 reject(res.body);
+        //             });
+        //     });
+    </script>
+
+
+</body>
+
+</html>,

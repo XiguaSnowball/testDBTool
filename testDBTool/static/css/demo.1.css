@@ -156,25 +156,7 @@ html[xmlns] .clearfix {
     line-height: 30px;
 }
 
-.contact input[type="text"] {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    font-size: 18px;
-    border: 1px solid #e1e1e1;
-    box-shadow: none;
-    /*width: 25%;*/
-    height: 36px;
-    padding: 5px 4px 6px;
-    font-size: 14px;
-    line-height: 20px;
-    color: #555;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    vertical-align: middle;
-}
-
+.contact input[type="text"],
 .contact input[type="email"] {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -192,10 +174,6 @@ html[xmlns] .clearfix {
     -moz-border-radius: 4px;
     border-radius: 4px;
     vertical-align: middle;
-}
-
-.databaseCss {
-    width: 25%;
 }
 
 .contact textarea {
@@ -1030,6 +1008,7 @@ html[xmlns] .clearfix {
     }
 }
 
+
 /*新*/
 
 .form_content {
@@ -1043,8 +1022,6 @@ fieldset {
     border: 1px solid #e1e1e1;
     padding: 5px 5px 5px 10px;
     margin: 0 0 10px 0;
-    width: 97.7%;
-
 }
 
 legend {
@@ -1065,12 +1042,6 @@ legend.optional {
     clear: both;
     float: left;
     padding: 10px 5px 5px 5px;
-}
-.form-row-select-result {
-    clear: both;
-    float: left;
-    padding: 10px 5px 5px 5px;
-    /*width: 85%;*/
 }
 
 .field-label {
@@ -1153,6 +1124,7 @@ textarea.optional {
     border-top: none;
     border-left-width: 2px;
 }
+
 
 /*新*/
 
