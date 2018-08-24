@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1dbca6f5-6d0c-4ab8-997e-19077648d5e1" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testDBTool/static/css/demo.css" beforeDir="false" afterPath="$PROJECT_DIR$/testDBTool/static/css/demo.css" afterDir="false" />
     </list>
     <ignored path="testDBTool.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,7 +36,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="demo.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dbmanager.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/testDBTool/static/dbmanager.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="222">
+              <caret line="262" column="17" selection-start-line="262" selection-start-column="17" selection-end-line="262" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="demo.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testDBTool/static/css/demo.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="413">
@@ -110,6 +118,7 @@
         <option value="$PROJECT_DIR$/testDBTool/model/utils/commonFun.py" />
         <option value="$PROJECT_DIR$/runserver.py" />
         <option value="$PROJECT_DIR$/testDBTool/static/css/demo.css" />
+        <option value="$PROJECT_DIR$/testDBTool/static/dbmanager.html" />
       </list>
     </option>
   </component>
@@ -459,7 +468,21 @@
       <option name="project" value="LOCAL" />
       <updated>1535081204594</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="修改页面宽度">
+      <created>1535089869860</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1535089869860</updated>
+    </task>
+    <task id="LOCAL-00013" summary="清空不展示结果">
+      <created>1535090580564</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1535090580564</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -478,7 +501,7 @@
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.25578833" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.25578833" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -533,7 +556,9 @@
     <MESSAGE value="修复中文乱码问题" />
     <MESSAGE value="增加页面&#10;增加sql美化" />
     <MESSAGE value="删除无用页面" />
-    <option name="LAST_COMMIT_MESSAGE" value="删除无用页面" />
+    <MESSAGE value="修改页面宽度" />
+    <MESSAGE value="清空不展示结果" />
+    <option name="LAST_COMMIT_MESSAGE" value="清空不展示结果" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -548,13 +573,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.pyenv/versions/3.6.0/lib/python3.6/socketserver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.pyenv/versions/3.6.0/lib/python3.6/http/server.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2137">
@@ -707,6 +725,13 @@
         <state relative-caret-position="-455" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/testDBTool/static/css/demo.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="21" column="19" lean-forward="true" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/runserver.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -714,10 +739,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testDBTool/static/css/demo.css">
+    <entry file="file://$PROJECT_DIR$/testDBTool/static/dbmanager.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="21" column="19" lean-forward="true" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+        <state relative-caret-position="222">
+          <caret line="262" column="17" selection-start-line="262" selection-start-column="17" selection-end-line="262" selection-end-column="17" />
         </state>
       </provider>
     </entry>
