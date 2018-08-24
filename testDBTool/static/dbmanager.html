@@ -34,12 +34,25 @@
                             <legend class="optional">选择服务器</legend>
                             <label class="left" style="padding-bottom: 15px;">
                                 <el-checkbox :indeterminate="flags.isIndeterminate" v-model="flags.checkAll"
-                                             @change="handleCheckAllChange">全选
+                                             @change="handleCheckAllChange">全选beta环境
                                 </el-checkbox>
                                 <br/>
                                 <div style="margin: 15px 0;"></div>
-                                <el-checkbox-group v-model="infoInput.hostNameList" @change="handleCheckedHostChange">
+                                <el-checkbox-group v-model="infoInput.hostNameList1" @change="handleCheckedHostChange">
                                     <el-checkbox-button v-for="item in hostNameListFe" :label="item"
+                                                        :key="item">{{item}}
+                                    </el-checkbox-button>
+                                </el-checkbox-group>
+                            </label>
+
+                            <label class="left" style="padding-bottom: 15px;">
+                                <el-checkbox :indeterminate="flags.isIndeterminate1" v-model="flags.checkAll1"
+                                             @change="handleCheckAllChange1">全选dev环境
+                                </el-checkbox>
+                                <br/>
+                                <div style="margin: 15px 0;"></div>
+                                <el-checkbox-group v-model="infoInput.hostNameList2" @change="handleCheckedHostChange1">
+                                    <el-checkbox-button v-for="item in hostNameListFe1" :label="item"
                                                         :key="item">{{item}}
                                     </el-checkbox-button>
                                 </el-checkbox-group>
@@ -142,9 +155,14 @@
                 checkAll: false,
                 isIndeterminate: true,
                 loading: false,
+
+                checkAll1: false,
+                isIndeterminate1: true,
             },
 
-            hostNameListFe: ["beta1", "beta2", "beta3", "beta4", "beta5", "beta6", "beta7", "beta8"],
+            hostNameListFe: ["beta1", "beta2", "beta3", "beta4", "beta5", "beta6", "beta7", "beta8", "beta9", "beta10", "beta13", "beta14"],
+            hostNameListFe1: ["dev1", "dev2", "dev3", "dev4", "dev5", "dev6", "dev7", "dev8", "dev9", "dev10", "dev11", "dev12", "dev13", "dev14", "dev15", "dev16", "dev17", "dev18", "dev19", "dev20", "dev21"],
+
             dbList: [{
                 id: "grampus",
                 value: "grampus"
@@ -206,7 +224,9 @@
                 database: '',
                 hostNameList: [],
                 comments: '',
-                sqlStrToFormat: ''
+                sqlStrToFormat: '',
+                hostNameList1: [],
+                hostNameList2: [],
 
             },
             resultInfo: {
@@ -222,6 +242,7 @@
         methods: {
             validationFun() {
                 this.flags.showFlag = 0;
+                this.infoInput.hostNameList = this.infoInput.hostNameList1.concat(this.infoInput.hostNameList2);
 
                 if (this.infoInput.hostNameList.length == 0 || this.infoInput.database == '' || this.infoInput.sqlStr == '') {
                     this.flags.showFlag = 1;
@@ -232,6 +253,7 @@
             },
             sqlExecuteFun() {
                 var vm = this;
+
                 axios.post(this.url, {
                     database: this.infoInput.database,
                     hostNameList: this.infoInput.hostNameList,
@@ -246,12 +268,12 @@
                             showClose: true,
                             message: vm.resultInfo.resultMsg + "，在页面下方查看执行结果",
                             type: 'success'
-                        })
-                        return;
+                        });
+
                     }
                 }).catch(function (error) {
                     vm.$message.error('失败咯');
-                    return;
+
                 })
             },
             resetInfoInput() {
@@ -261,10 +283,9 @@
                 this.infoInput.sqlStr = '';
                 this.resultInfo.queryResult = '';
                 this.flags.resultShowFlag = 0;
-
             },
             handleCheckAllChange(val) {
-                this.infoInput.hostNameList = val ? this.hostNameListFe : [];
+                this.infoInput.hostNameList1 = val ? this.hostNameListFe : [];
                 this.flags.isIndeterminate = false;
             },
             handleCheckedHostChange(value) {
@@ -272,6 +293,16 @@
                 this.flags.checkAll = checkedCount === this.hostNameListFe.length;
                 this.flags.isIndeterminate = checkedCount > 0 && checkedCount < this.hostNameListFe.length;
             },
+            handleCheckAllChange1(val) {
+                this.infoInput.hostNameList2 = val ? this.hostNameListFe1 : [];
+                this.flags.isIndeterminate1 = false;
+            },
+            handleCheckedHostChange1(value) {
+                checkedCount = value.length;
+                this.flags.checkAll1 = checkedCount === this.hostNameListFe1.length;
+                this.flags.isIndeterminate1 = checkedCount > 0 && checkedCount < this.hostNameListFe1.length;
+            },
+
             sqlFormat() {
                 var vm = this;
                 // debugger
@@ -281,11 +312,11 @@
                     if (response.data.status == 1) {
                         vm.resultInfo.queryResult = response.data.result;
 
-                        return;
+
                     }
                 }).catch(function (error) {
                     vm.$message.error('失败咯22');
-                    return;
+
                 })
             },
         },
