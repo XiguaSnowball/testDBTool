@@ -206,7 +206,7 @@
                 database: '',
                 hostNameList: [],
                 comments: '',
-                sqlStrToFormat:''
+                sqlStrToFormat: ''
 
             },
             resultInfo: {
@@ -260,6 +260,8 @@
                 this.infoInput.hostNameList = [];
                 this.infoInput.sqlStr = '';
                 this.resultInfo.queryResult = '';
+                this.flags.resultShowFlag = 0;
+
             },
             handleCheckAllChange(val) {
                 this.infoInput.hostNameList = val ? this.hostNameListFe : [];
@@ -279,7 +281,7 @@
                     if (response.data.status == 1) {
                         vm.resultInfo.queryResult = response.data.result;
 
-                        return ;
+                        return;
                     }
                 }).catch(function (error) {
                     vm.$message.error('失败咯22');

@@ -9,3 +9,82 @@
 2018-08-24 11:20:09,441 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 11:20:09] "GET /dbmanager.html HTTP/1.1" 304 -
 2018-08-24 11:20:15,334 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 11:20:15] "POST /sqlFormat HTTP/1.1" 200 -
 2018-08-24 11:20:23,806 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 11:20:23] "POST /sqlFormat HTTP/1.1" 200 -
+2018-08-24 13:46:26,811 - werkzeug - INFO -  * Running on http://127.0.0.1:12138/ (Press CTRL+C to quit)
+2018-08-24 13:46:26,814 - werkzeug - INFO -  * Restarting with stat
+2018-08-24 13:46:27,896 - werkzeug - WARNING -  * Debugger is active!
+2018-08-24 13:46:27,910 - werkzeug - INFO -  * Debugger PIN: 103-108-609
+2018-08-24 13:46:29,824 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:46:29] "GET /dbmanager.html HTTP/1.1" 200 -
+2018-08-24 13:46:29,853 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:46:29] "GET /js/axios.js HTTP/1.1" 200 -
+2018-08-24 13:46:29,860 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:46:29] "GET /js/requestUrls.js HTTP/1.1" 200 -
+2018-08-24 13:46:29,868 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:46:29] "GET /css/demo.css HTTP/1.1" 200 -
+2018-08-24 13:46:29,875 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:46:29] "GET /js/vue.js HTTP/1.1" 200 -
+2018-08-24 13:46:29,937 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:46:29] "GET /js/axios.map HTTP/1.1" 404 -
+2018-08-24 13:46:31,295 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:46:31] "GET /images/bg.png HTTP/1.1" 200 -
+2018-08-24 13:46:31,964 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:46:31] "GET /favicon.ico HTTP/1.1" 404 -
+2018-08-24 13:46:53,473 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:46:53] "POST /sqlFormat HTTP/1.1" 200 -
+2018-08-24 13:47:23,909 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:47:23] "POST /sqlFormat HTTP/1.1" 200 -
+2018-08-24 13:47:25,317 - root - INFO - --------开始执行【---------beta2----------】
+2018-08-24 13:47:25,350 - root - INFO - --------Connect DB successfully!
+2018-08-24 13:47:25,356 - root - ERROR - --------(1146, "Table 'grampus_crm.gms_company' doesn't exist")
+2018-08-24 13:47:25,358 - root - INFO - --------Database closed!
+2018-08-24 13:47:25,358 - root - INFO - --------开始执行【---------beta3----------】
+2018-08-24 13:47:25,385 - root - INFO - --------Connect DB successfully!
+2018-08-24 13:47:25,392 - root - ERROR - --------(1146, "Table 'grampus_crm.gms_company' doesn't exist")
+2018-08-24 13:47:25,392 - root - INFO - --------Database closed!
+2018-08-24 13:47:25,393 - root - INFO - --------开始执行【---------beta5----------】
+2018-08-24 13:47:25,418 - root - INFO - --------Connect DB successfully!
+2018-08-24 13:47:25,427 - root - ERROR - --------(1146, "Table 'grampus_crm.gms_company' doesn't exist")
+2018-08-24 13:47:25,428 - root - INFO - --------Database closed!
+2018-08-24 13:47:25,431 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:47:25] "POST /sqlExecute HTTP/1.1" 200 -
+2018-08-24 13:47:31,264 - root - INFO - --------开始执行【---------beta2----------】
+2018-08-24 13:47:31,434 - root - INFO - --------Connect DB successfully!
+2018-08-24 13:47:31,510 - root - INFO - --------执行sqlselect * from gms_company limit 20;
+2018-08-24 13:47:31,511 - root - INFO - --------执行成功=====host为beta2
+2018-08-24 13:47:31,511 - root - INFO - --------Database closed!
+2018-08-24 13:47:31,512 - root - INFO - --------开始执行【---------beta3----------】
+2018-08-24 13:47:31,554 - root - INFO - --------Connect DB successfully!
+2018-08-24 13:47:31,619 - root - INFO - --------执行sqlselect * from gms_company limit 20;
+2018-08-24 13:47:31,631 - root - INFO - --------执行成功=====host为beta3
+2018-08-24 13:47:31,632 - root - INFO - --------Database closed!
+2018-08-24 13:47:31,632 - root - INFO - --------开始执行【---------beta5----------】
+2018-08-24 13:47:31,659 - root - INFO - --------Connect DB successfully!
+2018-08-24 13:47:31,722 - root - INFO - --------执行sqlselect * from gms_company limit 20;
+2018-08-24 13:47:31,723 - root - INFO - --------执行成功=====host为beta5
+2018-08-24 13:47:31,723 - root - INFO - --------Database closed!
+2018-08-24 13:47:31,726 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:47:31] "POST /sqlExecute HTTP/1.1" 200 -
+2018-08-24 13:47:54,683 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:47:54] "POST /sqlFormat HTTP/1.1" 200 -
+2018-08-24 13:49:04,282 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:49:04] "GET /dbmanager.html HTTP/1.1" 304 -
+2018-08-24 13:49:04,468 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:49:04] "GET /js/axios.map HTTP/1.1" 404 -
+2018-08-24 13:49:11,689 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:49:11] "GET /dbmanager.html HTTP/1.1" 200 -
+2018-08-24 13:49:11,719 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:49:11] "GET /css/demo.css HTTP/1.1" 200 -
+2018-08-24 13:49:11,726 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:49:11] "GET /js/axios.js HTTP/1.1" 200 -
+2018-08-24 13:49:11,733 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:49:11] "GET /js/vue.js HTTP/1.1" 200 -
+2018-08-24 13:49:11,742 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:49:11] "GET /js/requestUrls.js HTTP/1.1" 200 -
+2018-08-24 13:49:11,790 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:49:11] "GET /js/axios.map HTTP/1.1" 404 -
+2018-08-24 13:49:12,646 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:49:12] "GET /images/bg.png HTTP/1.1" 200 -
+2018-08-24 13:49:24,908 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:49:24] "POST /sqlFormat HTTP/1.1" 200 -
+2018-08-24 13:49:29,604 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:49:29] "POST /sqlFormat HTTP/1.1" 200 -
+2018-08-24 13:49:32,767 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:49:32] "POST /sqlFormat HTTP/1.1" 200 -
+2018-08-24 13:49:37,354 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:49:37] "POST /sqlFormat HTTP/1.1" 200 -
+2018-08-24 13:49:40,110 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:49:40] "POST /sqlFormat HTTP/1.1" 200 -
+2018-08-24 13:49:50,505 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:49:50] "POST /sqlFormat HTTP/1.1" 200 -
+2018-08-24 13:49:53,903 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:49:53] "POST /sqlFormat HTTP/1.1" 200 -
+2018-08-24 13:50:21,151 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:50:21] "POST /sqlFormat HTTP/1.1" 200 -
+2018-08-24 13:50:41,395 - root - INFO - --------开始执行【---------beta1----------】
+2018-08-24 13:50:41,444 - root - INFO - --------Connect DB successfully!
+2018-08-24 13:50:41,462 - root - ERROR - --------(1050, "Table 'gms_company' already exists")
+2018-08-24 13:50:41,463 - root - INFO - --------Database closed!
+2018-08-24 13:50:41,463 - root - INFO - --------开始执行【---------beta3----------】
+2018-08-24 13:50:41,504 - root - INFO - --------Connect DB successfully!
+2018-08-24 13:50:41,521 - root - ERROR - --------(1050, "Table 'gms_company' already exists")
+2018-08-24 13:50:41,521 - root - INFO - --------Database closed!
+2018-08-24 13:50:41,524 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:50:41] "POST /sqlExecute HTTP/1.1" 200 -
+2018-08-24 13:50:41,568 - root - INFO - --------开始执行【---------beta1----------】
+2018-08-24 13:50:41,596 - root - INFO - --------Connect DB successfully!
+2018-08-24 13:50:41,610 - root - ERROR - --------(1050, "Table 'gms_company' already exists")
+2018-08-24 13:50:41,611 - root - INFO - --------Database closed!
+2018-08-24 13:50:41,611 - root - INFO - --------开始执行【---------beta3----------】
+2018-08-24 13:50:41,638 - root - INFO - --------Connect DB successfully!
+2018-08-24 13:50:41,654 - root - ERROR - --------(1050, "Table 'gms_company' already exists")
+2018-08-24 13:50:41,655 - root - INFO - --------Database closed!
+2018-08-24 13:50:41,658 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2018 13:50:41] "POST /sqlExecute HTTP/1.1" 200 -
