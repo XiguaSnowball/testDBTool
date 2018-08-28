@@ -1,0 +1,132 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:color="http://www.w3.org/1999/xhtml"
+      xmlns:v-on="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>数据库管理页面</title>
+    <link href="css/demo.css" rel="stylesheet" type="text/css">
+    <script src="./js/vue.js"></script>
+    <script src="./js/axios.js"></script>
+    <script src="./js/requestUrls.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+</head>
+
+<body>
+
+<section id="getintouch" class="flipInX animated">
+    <div class="container" style="border-bottom: 0;">
+        <h1>
+            <span>数据库维护工具</span>
+        </h1>
+    </div>
+    <div class="container">
+        <el-form :model="arrayListForPageUpdate.addDataOfHostInfo" :rules="arrayListForPageUpdate.hostInfoAddRules"
+                 ref="arrayListForPageUpdate.addDataOfHostInfo" label-width="100px"
+                 class="demo-arrayListForPageUpdate.addDataOfHostInfo">
+            <el-form-item label="连接名称" prop="hostName">
+                <el-input v-model="arrayListForPageUpdate.addDataOfHostInfo.hostName"></el-input>
+            </el-form-item>
+            <el-form-item label="Host" prop="hostIp">
+                <el-input v-model="arrayListForPageUpdate.addDataOfHostInfo.hostIp"></el-input>
+            </el-form-item>
+            <el-form-item label="Username" prop="username">
+                <el-input v-model="arrayListForPageUpdate.addDataOfHostInfo.username"></el-input>
+            </el-form-item>
+            <el-form-item label="Password" prop="password">
+                <el-input v-model="arrayListForPageUpdate.addDataOfHostInfo.password"></el-input>
+            </el-form-item>
+            <el-form-item label="Database" prop="database">
+                <el-input v-model="arrayListForPageUpdate.addDataOfHostInfo.database"></el-input>
+            </el-form-item>
+            <el-form-item label="Port" prop="port">
+                <el-input v-model="arrayListForPageUpdate.addDataOfHostInfo.port"></el-input>
+            </el-form-item>
+            <el-form-item label="服务器类型" prop="type">
+                <el-radio-group v-model="arrayListForPageUpdate.addDataOfHostInfo.type">
+                    <el-radio label="beta">beta</el-radio>
+                    <el-radio label="dev">dev</el-radio>
+                </el-radio-group>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @click="addHostInfoByType('arrayListForPageUpdate.addDataOfHostInfo')">立即创建
+                </el-button>
+                <el-button @click="resetForm('arrayListForPageUpdate.addDataOfHostInfo')">重置</el-button>
+            </el-form-item>
+        </el-form>
+    </div>
+</section>
+<script>
+    new Vue({
+        el: '#getintouch',
+        data: {
+            arrayListForPageUpdate: {
+                addDataOfHostInfo: {
+                    hostName: '',
+                    type: 'beta',
+                    hostIp: '',
+                    database: 'grampus',
+                    username: 'grampus',
+                    password: '123456',
+                    port: '3306'
+                },
+                hostInfoAddRules: {
+                    hostName: [
+                        {required: true, message: '请输入连接名称', trigger: 'blur'},
+                        // {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
+                    ],
+                    hostIp: [
+                        {required: true, message: '请输入HOST IP', trigger: 'blur'},
+                        // {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
+                    ],
+                    database: [
+                        {required: true, message: '请输入DATABASE', trigger: 'blur'},
+                        // {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
+                    ],
+                    username: [
+                        {required: true, message: '请输入用户名', trigger: 'blur'},
+                        // {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
+                    ],
+                    password: [
+                        {required: true, message: '请输入密码', trigger: 'blur'},
+                        // {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
+                    ],
+                    port: [
+                        {required: true, message: '请输入port', trigger: 'blur'},
+                        // {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
+                    ],
+                    type: [
+                        {required: true, message: '请选择服务器类型', trigger: 'change'}
+                    ],
+                }
+            },
+
+        },
+        methods: {
+            addHostInfoByType(formName) {
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        alert('submit!');
+                    } else {
+                        console.log('error submit!!');
+                        return false;
+                    }
+                });
+            },
+            resetForm(formName) {
+                this.$refs[formName].resetFields();
+            }
+        },
+        created() {
+        },
+
+    })
+</script>
+
+</body>
+
+</html>

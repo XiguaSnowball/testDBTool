@@ -49,7 +49,7 @@ class DBUtils:
             logger.error(str(ex))
         return DBUtils.cursor
 
-    def executeSQL(hostName, database, sql,resultJson):
+    def executeSQL(hostName, database, sql, resultJson):
         """
         execute sql
         :param hostName:
@@ -64,7 +64,7 @@ class DBUtils:
             DBUtils.db.commit()
             log.build_out_info_line("执行sql" + sql)
             log.build_out_info_line("执行成功" + "=====host为" + hostName)
-            resultJson.append({"host": hostName, "msg": "执行成功","error": ''})
+            resultJson.append({"host": hostName, "msg": "执行成功", "error": ''})
 
         except Exception as ex:
             log.build_out_error_line(str(ex))

@@ -16,21 +16,22 @@ def sqlFormat():
         inData = json.loads(request.get_data())
         sqlStrToFormat = inData["sqlStrToFormat"]
 
-
         url = 'https://1024tools.com/sqlformat'
         params = {"type": 'format', "query": sqlStrToFormat}
 
         try:
             response = requests.post(url, params)
-            response1= json.loads(response.text)
-            print(response1)
-
-
-            if '>'+sqlStrToFormat in response1['result'] :
-                return jsonify({'status':1,'result':sqlStrToFormat})
+            response1 = json.loads(response.text)
+            if response1:
+                if '>' + sqlStrToFormat in response1['result']:
+                    return jsonify({'status': 1, 'result': sqlStrToFormat, 'error': '格式化失败咯,不是标准SQL'})
+                else:
+                    status = response1['status']
+                    result = response1['result']
+                    resultR = jsonify({'status': status, 'result': result, 'error': 'SQL格式化成功^_^'})
+                    return resultR
             else:
-                return jsonify(response1)
+                return jsonify({'status': 1, 'result': sqlStrToFormat, 'error': '格式化失败,不知道咋了。。'})
 
         except Exception as ex:
-            return str(ex)
-
+            return jsonify({'status': 1, 'result': sqlStrToFormat, 'error': '格式化失败,异常了'})

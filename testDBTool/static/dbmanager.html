@@ -15,30 +15,40 @@
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 
 </head>
-
 <body>
 
 <section id="getintouch" class="flipInX animated">
-    <div class="container" style="border-bottom: 0;">
+
+    <div class="container" style="border-bottom: 0px;margin-bottom: 0px">
         <h1>
             <span>数据库维护工具</span>
         </h1>
     </div>
-    <div class="container">
-        <form class="contact" method="POST" id="dbForm">
+    <!--sql执行页-->
+    <div class="container" style="margin-top: 0px;padding-top: 0px;margin-bottom: 0px;padding-bottom: 0px;">
+        <!--tab切换-->
+        <el-tabs v-model="pageAttriList.pageTab" style="font-size: 20px">
+            <el-tab-pane v-for="item in pageAttriList.activeName2" :key="item.id" :label="item.name"
+                         :name="item.id"
+            ></el-tab-pane>
+        </el-tabs>
+
+        <form class="contact" method="POST" id="dbForm" v-show="pageAttriList.pageTab == 'sqlExcuTab'">
             <div class="row clearfix">
                 <fieldset>
-                    <legend class="optional">填写服务器信息</legend>
+                    <legend class="optional"><i class="el-icon-edit"></i> 选择服务器</legend>
                     <div class="form-row-select">
-                        <fieldset>
-                            <legend class="optional">选择服务器</legend>
+                        <div class="row clearfix">
+                            <el-alert title="服务器不能为空!" type="warning" show-icon v-show="flags.showFlag == 1"
+                                      style="width:200px"></el-alert>
                             <label class="left" style="padding-bottom: 15px;">
                                 <el-checkbox :indeterminate="flags.isIndeterminate" v-model="flags.checkAll"
                                              @change="handleCheckAllChange">全选beta环境
                                 </el-checkbox>
                                 <br/>
                                 <div style="margin: 15px 0;"></div>
-                                <el-checkbox-group v-model="infoInput.hostNameList1" @change="handleCheckedHostChange">
+                                <el-checkbox-group v-model="infoInput.hostNameList1" @change="handleCheckedHostChange"
+                                                   size="medium">
                                     <el-checkbox-button v-for="item in hostNameListFe" :label="item"
                                                         :key="item">{{item}}
                                     </el-checkbox-button>
@@ -50,55 +60,68 @@
                                              @change="handleCheckAllChange1">全选dev环境
                                 </el-checkbox>
                                 <br/>
-                                <div style="margin: 15px 0;"></div>
-                                <el-checkbox-group v-model="infoInput.hostNameList2" @change="handleCheckedHostChange1">
+                                <div stylse="margin: 15px 0;"></div>
+                                <el-checkbox-group v-model="infoInput.hostNameList2" @change="handleCheckedHostChange1"
+                                                   size="medium">
                                     <el-checkbox-button v-for="item in hostNameListFe1" :label="item"
                                                         :key="item">{{item}}
                                     </el-checkbox-button>
                                 </el-checkbox-group>
+
+                                <br/>
+                                <div style="margin: 15px 0;"></div>
+                                <el-checkbox-group v-model="infoInput.hostNameList2" @change="handleCheckedHostChange1"
+                                                   size="medium">
+                                    <el-checkbox-button v-for="item in hostNameListFe2" :label="item" :key="item">
+                                        {{item}}
+                                    </el-checkbox-button>
+                                </el-checkbox-group>
                             </label>
-
-
-                            <span v-show="flags.showFlag == 1" style="color:red;float:left"> !!!!不能为空!!!!</span>
-
-                        </fieldset>
+                        </div>
 
                         <div class="row clearfix">
                             <div class="lbl">
                                 <label for="Database">选择database或输入&nbsp;</label>
                             </div>
+
+                            <el-alert title="数据库不能为空!" type="warning" show-icon v-show="flags.showFlag == 1"
+                                      style="width: 200px;"></el-alert>
                         </div>
-
-                        <div class="row clearfix">
-
-                            <el-select v-model="infoInput.database" placeholder="请选择db">
+                        <div>
+                            <el-select v-model="infoInput.database" filterable placeholder="请选择db"
+                                       prefix-icon="el-icon-search" style="width: 200px; margin-left: 3px;">
                                 <el-option
                                         v-for="item in dbList"
                                         :key="item.value"
                                         :id="item.id"
                                         :value="item.value">
+                                    <span style="float: left">{{item.value}}</span>
+                                    <span style="float: end;padding-left: 7px; color: #8492a6; font-size: 10px">{{item.id}}</span>
                                 </el-option>
                             </el-select>
-                            <input type="text" id="Database" placeholder="grampus_crm" v-model="infoInput.database">
-
+                            <i class="el-icon-d-arrow-right"></i>
+                            <el-input v-model="infoInput.database" placeholder="grampus_crm"
+                                      style="width: 200px;"></el-input>
                         </div>
+
                     </div>
+
                 </fieldset>
-
                 <fieldset>
-                    <legend class="optional">填写SQL+备注</legend>
-
-
+                    <legend class="optional"><i class="el-icon-edit"></i> 填写SQL+备注</legend>
                     <div class="row clearfix">
                         <div class="lbl">
-                            <label for="sql">SQL<span v-show="flags.showFlag == 1"
-                                                      style="color:red"> !!!!不能为空!!!!</span></label>
+                            <el-alert title="SQL不能为空!" type="warning" show-icon v-show="flags.showFlag == 1"
+                                      style="width: 200px"></el-alert>
+
                             <br>
                         </div>
                         <div class="ctrl">
                             <textarea id="sql" rows="6" cols="10" v-model="infoInput.sqlStr"
                                       @blur.prevent="sqlFormat"></textarea>
-                            <span style="font: message-box;color: #555555" v-html="resultInfo.queryResult">{{resultInfo.queryResult}}</span>
+                            <el-tooltip :content="resultInfo.queryResultError" placement="left" effect="light">
+                                <span style="font: message-box;color: #555555" v-html="resultInfo.queryResult">{{resultInfo.queryResult}}</span>
+                            </el-tooltip>
                         </div>
                     </div>
 
@@ -118,16 +141,16 @@
 
                 <div class="row  clearfix">
                     <div class="span10 offset2">
-                        <el-button type="primary" :loading="flags.loading" @click="validationFun">执行</el-button>
-                        <el-button type="reset" @click="resetInfoInput">清空</el-button>
+                        <el-button type="primary" class="el-icon-tickets" :loading="flags.loading"
+                                   @click="validationFun"> 执行
+                        </el-button>
+                        <el-button type="reset" class="el-icon-delete" @click="resetInfoInput"> 清空</el-button>
 
                     </div>
                 </div>
             </div>
         </form>
-
-
-        <fieldset v-show="flags.resultShowFlag == 1">
+        <fieldset v-show="flags.resultShowFlag == 1 && pageAttriList.pageTab == 'sqlExcuTab'">
             <legend class="optional">执行结果</legend>
             <div class="form-row-select-result" style=" padding-right: 20px;padding-left: 15px;"
                  v-for="resultItem in resultInfo.excuResultList">
@@ -142,9 +165,193 @@
                 </fieldset>
             </div>
         </fieldset>
-
     </div>
+
+    <!--配置变更页-->
+    <div class="container" style="margin-top: 0px;padding-top: 0px;padding-bottom: 0px;margin-bottom: 0px;">
+        <form class="contact" v-show="pageAttriList.pageTab == 'configUpdateTab'">
+            <div class="row clearfix">
+                <fieldset>
+                    <legend class="optional"><i class="el-icon-edit"></i>查看和新增</legend>
+                    <div class="form-row-select">
+                        <fieldset style="width: 100%;">
+                            <legend class="optional">连接列表</legend>
+
+                            <el-table :data="arrayListForPageUpdate.tableDataOfHostInfo" style="width:100%;"
+                                      size="medium" row-style="height:7px" cell-style="padding:0">
+                                <el-table-column fixed prop="hostName" label="服务器" width="100"></el-table-column>
+                                <el-table-column prop="hostIp" label="Host" width="100" height="5"></el-table-column>
+                                <el-table-column prop="database" label="Database" width="150"></el-table-column>
+                                <el-table-column prop="username" label="Username" width="120"></el-table-column>
+                                <el-table-column prop="password" label="Password" width="120"></el-table-column>
+                                <el-table-column prop="port" label="port" width="80"></el-table-column>
+                                <el-table-column fixed="right" label="操作" width="100">
+                                    <template slot-scope="scope">
+                                        </el-button>
+                                        <el-button type="text" size="small"
+                                                   @click="arrayListForPageUpdate.dialogFormVisible = true">编辑
+                                        </el-button>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                            <br>
+                            <div class="block">
+                                <el-pagination
+                                        current-page.sync="1"
+                                        :page-size="100"
+                                        layout="total, prev, pager, next"
+                                        :total="1000">
+                                </el-pagination>
+                            </div>
+                            <el-dialog title="修改编辑" :visible.sync="arrayListForPageUpdate.dialogFormVisible"
+                                       modal="false" modal-append-to-body="false">
+                                <el-form :model="arrayListForPageUpdate.tableDataOfHostInfo" modal="false"
+                                         modal-append-to-body="false">
+
+                                    <el-form-item label="连接名称" prop="hostName" label-width="100px">
+                                        <el-input v-model="arrayListForPageUpdate.addDataOfHostInfo.hostName" auto-complete="off"></el-input>
+                                    </el-form-item>
+                                    <el-form-item label="Host" prop="hostIp" label-width="100px">
+                                        <el-input v-model="arrayListForPageUpdate.addDataOfHostInfo.hostIp" auto-complete="off"></el-input>
+                                    </el-form-item>
+                                    <el-form-item label="Username" prop="username" label-width="100px">
+                                        <el-input v-model="arrayListForPageUpdate.addDataOfHostInfo.username" auto-complete="off"></el-input>
+                                    </el-form-item>
+                                    <el-form-item label="Password" prop="password" label-width="100px">
+                                        <el-input v-model="arrayListForPageUpdate.addDataOfHostInfo.password" auto-complete="off"></el-input>
+                                    </el-form-item>
+                                    <el-form-item label="Database" prop="database" label-width="100px">
+                                        <el-input v-model="arrayListForPageUpdate.addDataOfHostInfo.database" auto-complete="off"></el-input>
+                                    </el-form-item>
+                                    <el-form-item label="Port" prop="port" label-width="100px">
+                                        <el-input v-model="arrayListForPageUpdate.addDataOfHostInfo.port" auto-complete="off"></el-input>
+                                    </el-form-item>
+                                    <el-form-item label="服务器类型" prop="type">
+                                        <el-radio-group v-model="arrayListForPageUpdate.addDataOfHostInfo.type">
+                                            <el-radio label="beta">beta</el-radio>
+                                            <el-radio label="dev">dev</el-radio>
+                                        </el-radio-group>
+                                    </el-form-item>
+                                </el-form>
+                                <div slot="footer" class="dialog-footer">
+                                    <el-button @click="arrayListForPageUpdate.dialogFormVisible = false">取 消</el-button>
+                                    <el-button type="primary" @click="arrayListForPageUpdate.dialogFormVisible = false">
+                                        确 定
+                                    </el-button>
+                                </div>
+                            </el-dialog>
+
+                        </fieldset>
+                    </div>
+
+                    <fieldset style="width: 789px;margin-left: 4px;">
+                        <legend class="optional">新增数据库连接</legend>
+                        <div class="container" style="margin-left: 0px; padding-left: 0px;">
+                            <el-form :model="arrayListForPageUpdate.addDataOfHostInfo"
+                                     :rules="arrayListForPageUpdate.hostInfoAddRules"
+                                     ref="arrayListForPageUpdate.addDataOfHostInfo" label-width="100px"
+                                     class="demo-arrayListForPageUpdate.addDataOfHostInfo">
+
+                                <el-form-item label="连接名称" prop="hostName">
+                                    <el-input v-model="arrayListForPageUpdate.addDataOfHostInfo.hostName"></el-input>
+                                </el-form-item>
+                                <el-form-item label="Host" prop="hostIp">
+                                    <el-input v-model="arrayListForPageUpdate.addDataOfHostInfo.hostIp"></el-input>
+                                </el-form-item>
+                                <el-form-item label="Username" prop="username">
+                                    <el-input v-model="arrayListForPageUpdate.addDataOfHostInfo.username"></el-input>
+                                </el-form-item>
+                                <el-form-item label="Password" prop="password">
+                                    <el-input v-model="arrayListForPageUpdate.addDataOfHostInfo.password"></el-input>
+                                </el-form-item>
+                                <el-form-item label="Database" prop="database">
+                                    <el-input v-model="arrayListForPageUpdate.addDataOfHostInfo.database"></el-input>
+                                </el-form-item>
+                                <el-form-item label="Port" prop="port">
+                                    <el-input v-model="arrayListForPageUpdate.addDataOfHostInfo.port"></el-input>
+                                </el-form-item>
+                                <el-form-item label="服务器类型" prop="type">
+                                    <el-radio-group v-model="arrayListForPageUpdate.addDataOfHostInfo.type">
+                                        <el-radio label="beta">beta</el-radio>
+                                        <el-radio label="dev">dev</el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
+                                <el-form-item>
+                                    <el-button type="primary" class="el-icon-edit-outline"
+                                               @click="addHostInfoByType('arrayListForPageUpdate.addDataOfHostInfo')">
+                                        新增
+                                    </el-button>
+                                    <el-button type="reset" class="el-icon-delete"
+                                               @click="resetFormOfAddHostInfo('arrayListForPageUpdate.addDataOfHostInfo')">
+                                        重置
+                                    </el-button>
+                                </el-form-item>
+                            </el-form>
+                        </div>
+                    </fieldset>
+                </fieldset>
+
+            </div>
+        </form>
+    </div>
+
+    <!--数据查询页-->
+    <div class="container" style="margin-top: 0px;padding-top: 0px;padding-bottom: 0px;margin-bottom: 0px;">
+        <form class="contact" v-show="pageAttriList.pageTab == 'dataTabForSelect'">
+            <div class="row clearfix">
+                <fieldset>
+                    <legend class="optional"><i class="el-icon-edit"></i>查看和新增</legend>
+                    <div class="form-row-select">
+                        <fieldset>
+                            <legend class="optional">连接列表</legend>
+
+                            <el-table :data="arrayListForPageUpdate.tableDataOfHostInfo" style="width:100%;"
+                                      size="medium" row-style="height:7px" cell-style="padding:0">
+                                <el-table-column fixed prop="hostName" label="服务器" width="100"></el-table-column>
+                                <el-table-column prop="hostIp" label="Host" width="100" height="5"></el-table-column>
+                                <el-table-column prop="database" label="Database" width="150"></el-table-column>
+                                <el-table-column prop="username" label="Username" width="120"></el-table-column>
+                                <el-table-column prop="password" label="Password" width="120"></el-table-column>
+                                <el-table-column prop="port" label="port" width="80"></el-table-column>
+                                <el-table-column fixed="right" label="操作" width="100">
+                                    <template slot-scope="scope">
+                                        </el-button>
+                                        <el-button type="text" size="small">编辑</el-button>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                            <br>
+                            <div class="block">
+                                <el-pagination
+                                        current-page.sync="1"
+                                        :page-size="100"
+                                        layout="total, prev, pager, next"
+                                        :total="1000">
+                                </el-pagination>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <fieldset>
+                        <legend class="optional">新增数据库连接</legend>
+                    </fieldset>
+                    <div class="row  clearfix">
+                        <div class="span10 offset2">
+                            <el-button type="primary" class="el-icon-edit-outline" :loading="flags.loading"
+                                       @click="validationFun"> 新增
+                            </el-button>
+                            <el-button type="reset" class="el-icon-delete" @click="resetInfoInput"> 清空</el-button>
+
+                        </div>
+                    </div>
+                </fieldset>
+
+            </div>
+        </form>
+    </div>
+
 </section>
+
 <script>
     new Vue({
         el: '#getintouch',
@@ -161,58 +368,60 @@
             },
 
             hostNameListFe: ["beta1", "beta2", "beta3", "beta4", "beta5", "beta6", "beta7", "beta8", "beta9", "beta10", "beta13", "beta14"],
-            hostNameListFe1: ["dev1", "dev2", "dev3", "dev4", "dev5", "dev6", "dev7", "dev8", "dev9", "dev10", "dev11", "dev12", "dev13", "dev14", "dev15", "dev16", "dev17", "dev18", "dev19", "dev20", "dev21"],
+            hostNameListFe1: ["dev1", "dev2", "dev3", "dev4", "dev5", "dev6", "dev7", "dev8", "dev9", "dev10", "dev11"],
+            hostNameListFe2: ["dev12", "dev13", "dev14", "dev15", "dev16", "dev17", "dev18", "dev19", "dev20", "dev21"],
 
+            databaseListFe: [],
             dbList: [{
-                id: "grampus",
+                id: "虎鲸库",
                 value: "grampus"
             }, {
-                id: "grampus_crm",
+                id: "虎鲸crm",
                 value: "grampus_crm"
             }, {
-                id: "grampus_erp",
+                id: "虎鲸erp",
                 value: "grampus_erp"
             }, {
-                id: "bi_export",
+                id: "bi表",
                 value: "bi_export"
             }, {
-                id: "grampus_rep",
+                id: "replenishment补货",
                 value: "grampus_rep"
             }, {
-                id: "grampus_oa",
+                id: "oa库",
                 value: "grampus_oa"
             }, {
-                id: "grampus_ccs",
+                id: "统一认证ccs",
                 value: "grampus_ccs"
             }, {
-                id: "grampus_cms",
+                id: "cms",
                 value: "grampus_cms"
             }, {
-                id: "grampus_coupon",
+                id: "coupon",
                 value: "grampus_coupon"
             }, {
-                id: "grampus_ehs",
+                id: "ehs",
                 value: "grampus_ehs"
             }, {
-                id: "grampus_ess",
+                id: "ess",
                 value: "grampus_ess"
             }, {
-                id: "grampus_marketing",
+                id: "marketing",
                 value: "grampus_marketing"
             }, {
-                id: "grampus_order",
+                id: "order",
                 value: "grampus_order"
             }, {
-                id: "grampus_pss",
+                id: "pss商品",
                 value: "grampus_pss"
             }, {
-                id: "grampus_smart",
+                id: "智能",
                 value: "grampus_smart"
             }, {
-                id: "grampus_user",
+                id: "虎鲸user",
                 value: "grampus_user"
             }, {
-                id: "bms_production",
+                id: "bms商品",
                 value: "bms_production"
             }],
 
@@ -236,8 +445,80 @@
                 resultExcuResultMsg: '',
                 excuResultList: [],
 
-                queryResult: null
+                queryResult: null,
+                queryResultError: ''
             },
+
+            pageAttriList: {
+                activeName2: [
+                    {id: 'sqlExcuTab', name: 'SQL执行页'},
+                    {id: 'configUpdateTab', name: '配置变更页'},
+                    {id: 'dataTabForSelect', name: '数据查询页'},],
+                pageTab: "sqlExcuTab",
+            },
+
+            arrayListForPageUpdate: {
+                tableDataOfHostInfo: [
+                    {
+                        hostName: 'beta1',
+                        type: 'beta',
+                        hostIp: '10.7.2.16',
+                        database: 'grampus',
+                        username: 'grampus',
+                        password: '123456',
+                        port: '3306'
+                    },
+                    {
+                        hostName: 'beta1',
+                        type: 'beta',
+                        hostIp: '10.7.2.15',
+                        database: 'grampus',
+                        username: 'grampus',
+                        password: '123456',
+                        port: '3306'
+                    }
+                ],
+                addDataOfHostInfo: {
+                    hostName: '',
+                    type: 'beta',
+                    hostIp: '',
+                    database: 'grampus',
+                    username: 'grampus',
+                    password: '123456',
+                    port: '3306'
+                },
+                hostInfoAddRules: {
+                    hostName: [
+                        {required: true, message: '请输入连接名称', trigger: 'blur'},
+                        // {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
+                    ],
+                    hostIp: [
+                        {required: true, message: '请输入HOST IP', trigger: 'blur'},
+                        // {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
+                    ],
+                    database: [
+                        {required: true, message: '请输入DATABASE', trigger: 'blur'},
+                        // {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
+                    ],
+                    username: [
+                        {required: true, message: '请输入用户名', trigger: 'blur'},
+                        // {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
+                    ],
+                    password: [
+                        {required: true, message: '请输入密码', trigger: 'blur'},
+                        // {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
+                    ],
+                    port: [
+                        {required: true, message: '请输入port', trigger: 'blur'},
+                        // {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
+                    ],
+                    type: [
+                        {required: true, message: '请选择服务器类型', trigger: 'change'}
+                    ],
+                },
+                dialogFormVisible: false,
+                formLabelWidth: '120px'
+            }
         },
         methods: {
             validationFun() {
@@ -264,18 +545,27 @@
                         vm.resultInfo.resultMsg = response.data.msg;
                         vm.resultInfo.excuResultList = response.data.excuResult;
                         vm.flags.resultShowFlag = 1;
-                        vm.$message({
-                            showClose: true,
-                            message: vm.resultInfo.resultMsg + "，在页面下方查看执行结果",
-                            type: 'success'
+                        vm.$notify({
+                            title: vm.resultInfo.resultMsg,
+                            message: "在页面下方查看执行结果",
+                            type: 'success',
+                            position: 'top-left',
+                            offset: 100,
+                            duration: 5000
                         });
-
                     }
                 }).catch(function (error) {
-                    vm.$message.error('失败咯');
+                    vm.flags.loading = false;
+                    vm.$notify.error({
+                        title: '执行失败！',
+                        message: '出现异常咯！',
+                        position: 'top-left',
+                        offset: 100,
+                    });
 
                 })
             },
+
             resetInfoInput() {
                 this.infoInput.comments = '';
                 this.infoInput.database = '';
@@ -283,49 +573,70 @@
                 this.infoInput.sqlStr = '';
                 this.resultInfo.queryResult = '';
                 this.flags.resultShowFlag = 0;
-            },
+                this.infoInput.hostNameList1 = [];
+                this.infoInput.hostNameList2 = [];
+            }
+            ,
             handleCheckAllChange(val) {
                 this.infoInput.hostNameList1 = val ? this.hostNameListFe : [];
                 this.flags.isIndeterminate = false;
-            },
+            }
+            ,
             handleCheckedHostChange(value) {
                 checkedCount = value.length;
                 this.flags.checkAll = checkedCount === this.hostNameListFe.length;
                 this.flags.isIndeterminate = checkedCount > 0 && checkedCount < this.hostNameListFe.length;
-            },
+            }
+            ,
             handleCheckAllChange1(val) {
-                this.infoInput.hostNameList2 = val ? this.hostNameListFe1 : [];
+                this.infoInput.hostNameList2 = val ? this.hostNameListFe1.concat(this.hostNameListFe2) : [];
                 this.flags.isIndeterminate1 = false;
-            },
+            }
+            ,
             handleCheckedHostChange1(value) {
                 checkedCount = value.length;
-                this.flags.checkAll1 = checkedCount === this.hostNameListFe1.length;
-                this.flags.isIndeterminate1 = checkedCount > 0 && checkedCount < this.hostNameListFe1.length;
-            },
-
+                this.flags.checkAll1 = checkedCount === this.hostNameListFe1.length + this.hostNameListFe2.length;
+                this.flags.isIndeterminate1 = checkedCount > 0 && checkedCount < this.hostNameListFe1.length + this.hostNameListFe2.length;
+            }
+            ,
             sqlFormat() {
                 var vm = this;
                 // debugger
                 axios.post(this.url1, {
                     sqlStrToFormat: this.infoInput.sqlStr
                 }).then(function (response) {
+                    // debugger
                     if (response.data.status == 1) {
                         vm.resultInfo.queryResult = response.data.result;
-
-
+                        vm.resultInfo.queryResultError = response.data.error;
+                        return;
                     }
+                    vm.resultInfo.queryResult = vm.infoInput.sqlStr;
                 }).catch(function (error) {
-                    vm.$message.error('失败咯22');
-
+                    vm.$message.error('失败咯');
                 })
+            },
+            addHostInfoByType(formName) {
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        alert('submit!');
+                    } else {
+                        console.log('error submit!!');
+                        return false;
+                    }
+                });
+            },
+            resetFormOfAddHostInfo(formName) {
+                this.$refs[formName].resetFields();
+                this.arrayListForPageUpdate.addDataOfHostInfo.database = '';
+                this.arrayListForPageUpdate.addDataOfHostInfo.username = '';
+                this.arrayListForPageUpdate.addDataOfHostInfo.password = '';
+                this.arrayListForPageUpdate.addDataOfHostInfo.port = '';
             },
         },
         created() {
         },
-
     })
 </script>
-
 </body>
-
 </html>

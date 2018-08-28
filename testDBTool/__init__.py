@@ -2,6 +2,7 @@
 from flask import Flask
 
 app = Flask(__name__, static_url_path='', root_path='/Users/xingyukun/PycharmProjects/testDBTool/testDBTool/')
+# app = Flask(__name__, static_url_path='', root_path='/data/soft/python3/pythonProjects/testDBTool/testDBTool/')
 
 # 只有在app对象之后声明，用于导入view模块
 
@@ -9,4 +10,3 @@ app = Flask(__name__, static_url_path='', root_path='/Users/xingyukun/PycharmPro
 # from testDBTool.controller import dbController
 from testDBTool.controller import sqlExecuteController
 from testDBTool.controller import sqlFormatController
-

@@ -1,0 +1,6 @@
+testDBTool/__pycache__
+testDBTool/controller/__pycache__
+.idea
+testDBTool/model/__pycache__
+testDBTool/model/utils/result/
+.vscode

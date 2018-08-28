@@ -1,4 +1,4 @@
-<!DOCTYPE html >
+﻿<!DOCTYPE html >
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:color="http://www.w3.org/1999/xhtml"
       xmlns:v-on="http://www.w3.org/1999/xhtml">
 
@@ -28,18 +28,42 @@
         <form class="contact" method="POST" id="dbForm">
             <div class="row clearfix">
                 <fieldset>
-                    <legend class="optional">填写服务器信息</legend>
+                    <legend class="optional"><i class="el-icon-edit"></i> 填写服务器信息</legend>
                     <div class="form-row-select">
                         <fieldset>
                             <legend class="optional">选择服务器</legend>
                             <label class="left" style="padding-bottom: 15px;">
                                 <el-checkbox :indeterminate="flags.isIndeterminate" v-model="flags.checkAll"
-                                             @change="handleCheckAllChange">全选
+                                             @change="handleCheckAllChange">全选beta环境
                                 </el-checkbox>
                                 <br/>
                                 <div style="margin: 15px 0;"></div>
-                                <el-checkbox-group v-model="infoInput.hostNameList" @change="handleCheckedHostChange">
+                                <el-checkbox-group v-model="infoInput.hostNameList1" @change="handleCheckedHostChange"
+                                                   size="medium">
                                     <el-checkbox-button v-for="item in hostNameListFe" :label="item"
+                                                        :key="item">{{item}}
+                                    </el-checkbox-button>
+                                </el-checkbox-group>
+                            </label>
+
+                            <label class="left" style="padding-bottom: 15px;">
+                                <el-checkbox :indeterminate="flags.isIndeterminate1" v-model="flags.checkAll1"
+                                             @change="handleCheckAllChange1">全选dev环境
+                                </el-checkbox>
+                                <br/>
+                                <div style="margin: 15px 0;"></div>
+                                <el-checkbox-group v-model="infoInput.hostNameList2" @change="handleCheckedHostChange1"
+                                                   size="medium">
+                                    <el-checkbox-button v-for="item in hostNameListFe1" :label="item"
+                                                        :key="item">{{item}}
+                                    </el-checkbox-button>
+                                </el-checkbox-group>
+
+                                <br/>
+                                <div style="margin: 15px 0;"></div>
+                                <el-checkbox-group v-model="infoInput.hostNameList2" @change="handleCheckedHostChange1"
+                                                   size="medium">
+                                    <el-checkbox-button v-for="item in hostNameListFe2" :label="item"
                                                         :key="item">{{item}}
                                     </el-checkbox-button>
                                 </el-checkbox-group>
@@ -55,10 +79,24 @@
                                 <label for="Database">选择database或输入&nbsp;</label>
                             </div>
                         </div>
+                        <el-autocomplete v-model="infoInput.database" :fetch-suggestions="databaseSearch"
+                                         placeholder="请输入db"
+                                         @click="handleIconClick"
+                                         @select="handleSelect"
+                                         style="line-height: normal;">
+                            <i class="el-icon-edit el-input__icon"
+                               slot="suffix"></i>
+                            <template slot-scope="{item}">
+                                <div style="text-overflow: ellipsis; overflow: hidden;">{{item.value}}</div>
+                                <span style="font-size: 12px; color: #b4b4b4;">{{item.id}}</span>
+                            </template>
+                        </el-autocomplete>
+
 
                         <div class="row clearfix">
 
-                            <el-select v-model="infoInput.database" placeholder="请选择db">
+                            <el-select v-model="infoInput.database" filterable placeholder="请选择db"
+                                       prefix-icon="el-icon-search">
                                 <el-option
                                         v-for="item in dbList"
                                         :key="item.value"
@@ -66,14 +104,18 @@
                                         :value="item.value">
                                 </el-option>
                             </el-select>
-                            <input type="text" id="Database" placeholder="grampus_crm" v-model="infoInput.database">
+                            <i class="el-icon-d-arrow-right"></i>
 
+                            <input type="text" id="Database" placeholder="grampus_crm" v-model="infoInput.database">
                         </div>
+                        <span v-show="flags.showFlag == 1" style="color:red;float:left"> !!!!不能为空!!!!</span>
                     </div>
+
+
                 </fieldset>
 
                 <fieldset>
-                    <legend class="optional">填写SQL+备注</legend>
+                    <legend class="optional"><i class="el-icon-edit"></i> 填写SQL+备注</legend>
 
 
                     <div class="row clearfix">
@@ -85,7 +127,9 @@
                         <div class="ctrl">
                             <textarea id="sql" rows="6" cols="10" v-model="infoInput.sqlStr"
                                       @blur.prevent="sqlFormat"></textarea>
-                            <span style="font: message-box;color: #555555" v-html="resultInfo.queryResult">{{resultInfo.queryResult}}</span>
+                            <el-tooltip :content="resultInfo.queryResultError" placement="left" effect="light">
+                                <span style="font: message-box;color: #555555" v-html="resultInfo.queryResult">{{resultInfo.queryResult}}</span>
+                            </el-tooltip>
                         </div>
                     </div>
 
@@ -105,8 +149,10 @@
 
                 <div class="row  clearfix">
                     <div class="span10 offset2">
-                        <el-button type="primary" :loading="flags.loading" @click="validationFun">执行</el-button>
-                        <el-button type="reset" @click="resetInfoInput">清空</el-button>
+                        <el-button type="primary" class="el-icon-tickets" :loading="flags.loading"
+                                   @click="validationFun"> 执行
+                        </el-button>
+                        <el-button type="reset" class="el-icon-delete" @click="resetInfoInput"> 清空</el-button>
 
                     </div>
                 </div>
@@ -132,6 +178,7 @@
 
     </div>
 </section>
+
 <script>
     new Vue({
         el: '#getintouch',
@@ -142,11 +189,18 @@
                 checkAll: false,
                 isIndeterminate: true,
                 loading: false,
+
+                checkAll1: false,
+                isIndeterminate1: true,
             },
 
-            hostNameListFe: ["beta1", "beta2", "beta3", "beta4", "beta5", "beta6", "beta7", "beta8"],
+            hostNameListFe: ["beta1", "beta2", "beta3", "beta4", "beta5", "beta6", "beta7", "beta8", "beta9", "beta10", "beta13", "beta14"],
+            hostNameListFe1: ["dev1", "dev2", "dev3", "dev4", "dev5", "dev6", "dev7", "dev8", "dev9", "dev10", "dev11"],
+            hostNameListFe2: ["dev12", "dev13", "dev14", "dev15", "dev16", "dev17", "dev18", "dev19", "dev20", "dev21"],
+
+            databaseListFe: [],
             dbList: [{
-                id: "grampus",
+                id: "虎鲸库",
                 value: "grampus"
             }, {
                 id: "grampus_crm",
@@ -198,6 +252,7 @@
                 value: "bms_production"
             }],
 
+
             url: urls[0].sqlExecute,
             url1: urls[1].sqlFormat,
 
@@ -206,7 +261,9 @@
                 database: '',
                 hostNameList: [],
                 comments: '',
-                sqlStrToFormat: ''
+                sqlStrToFormat: '',
+                hostNameList1: [],
+                hostNameList2: [],
 
             },
             resultInfo: {
@@ -216,12 +273,14 @@
                 resultExcuResultMsg: '',
                 excuResultList: [],
 
-                queryResult: null
+                queryResult: null,
+                queryResultError: ''
             },
         },
         methods: {
             validationFun() {
                 this.flags.showFlag = 0;
+                this.infoInput.hostNameList = this.infoInput.hostNameList1.concat(this.infoInput.hostNameList2);
 
                 if (this.infoInput.hostNameList.length == 0 || this.infoInput.database == '' || this.infoInput.sqlStr == '') {
                     this.flags.showFlag = 1;
@@ -232,6 +291,7 @@
             },
             sqlExecuteFun() {
                 var vm = this;
+
                 axios.post(this.url, {
                     database: this.infoInput.database,
                     hostNameList: this.infoInput.hostNameList,
@@ -242,33 +302,58 @@
                         vm.resultInfo.resultMsg = response.data.msg;
                         vm.resultInfo.excuResultList = response.data.excuResult;
                         vm.flags.resultShowFlag = 1;
-                        vm.$message({
-                            showClose: true,
-                            message: vm.resultInfo.resultMsg + "，在页面下方查看执行结果",
-                            type: 'success'
+                        vm.$notify({
+                            title: vm.resultInfo.resultMsg,
+                            message: "在页面下方查看执行结果",
+                            type: 'success',
+                            position: 'top-left',
+                            offset: 100,
+                            duration: 5000
                         });
-
                     }
                 }).catch(function (error) {
-                    vm.$message.error('失败咯');
+                    vm.flags.loading = false;
+                    vm.$notify.error({
+                        title: '执行失败！',
+                        message: '出现异常咯！',
+                        position: 'top-left',
+                        offset: 100,
+                    });
 
                 })
             },
+
             resetInfoInput() {
                 this.infoInput.comments = '';
                 this.infoInput.database = '';
                 this.infoInput.hostNameList = [];
                 this.infoInput.sqlStr = '';
                 this.resultInfo.queryResult = '';
-            },
+                this.flags.resultShowFlag = 0;
+                this.infoInput.hostNameList1 = [];
+                this.infoInput.hostNameList2 = [];
+            }
+            ,
             handleCheckAllChange(val) {
-                this.infoInput.hostNameList = val ? this.hostNameListFe : [];
+                this.infoInput.hostNameList1 = val ? this.hostNameListFe : [];
                 this.flags.isIndeterminate = false;
-            },
+            }
+            ,
             handleCheckedHostChange(value) {
                 checkedCount = value.length;
                 this.flags.checkAll = checkedCount === this.hostNameListFe.length;
                 this.flags.isIndeterminate = checkedCount > 0 && checkedCount < this.hostNameListFe.length;
+            }
+            ,
+            handleCheckAllChange1(val) {
+                this.infoInput.hostNameList2 = val ? this.hostNameListFe1.concat(this.hostNameListFe2) : [];
+                this.flags.isIndeterminate1 = false;
+            }
+            ,
+            handleCheckedHostChange1(value) {
+                checkedCount = value.length;
+                this.flags.checkAll1 = checkedCount === this.hostNameListFe1.length + this.hostNameListFe2.length;
+                this.flags.isIndeterminate1 = checkedCount > 0 && checkedCount < this.hostNameListFe1.length + this.hostNameListFe2.length;
             },
             sqlFormat() {
                 var vm = this;
@@ -276,22 +361,50 @@
                 axios.post(this.url1, {
                     sqlStrToFormat: this.infoInput.sqlStr
                 }).then(function (response) {
+                    // debugger
                     if (response.data.status == 1) {
                         vm.resultInfo.queryResult = response.data.result;
-
-
+                        vm.resultInfo.queryResultError = response.data.error;
+                        return;
                     }
+                    vm.resultInfo.queryResult = vm.infoInput.sqlStr;
                 }).catch(function (error) {
-                    vm.$message.error('失败咯22');
-
+                    vm.$message.error('失败咯');
                 })
+            },
+            databaseSearch(databaseStringForSearch, cb) {
+                var results = databaseStringForSearch ? this.databaseListFe.filter(this.createFilter(databaseStringForSearch)) : this.databaseListFe;
+                // 调用 callback 返回建议列表的数据
+                cb(results);
+            },
+            createFilter(databaseStringForSearch) {
+                return (restaurant) =;
+            >
+                {
+                    return (restaurant.value.toLowerCase().indexOf(databaseStringForSearch.toLowerCase()) === 0);
+                }
+            },
+            loadAll() {
+                return this.dbList;
+            },
+            handleSelect(item) {
+
+                // console.log(item);
+            },
+            handleIconClick() {
+                this.databaseListFe = [];
+                // console.log(ev);
             },
         },
         created() {
-        },
+            this.databaseListFe = this.loadAll();
+
+        }
+        ,
 
     })
 </script>
+
 
 </body>
 

@@ -1,7 +1,7 @@
 # _*_ coding: utf-8 _*_
 
 # 调试模式是否开启
-DEBUG = True
+# DEBUG = True
 #
 # SQLALCHEMY_TRACK_MODIFICATIONS = False
 # # session必须要设置key
